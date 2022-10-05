@@ -1,0 +1,91 @@
+
+.top {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4rem;
+  background-color: #fff;
+  border-bottom: 1px solid var(--color-grey-light);
+  &__search-box {
+    display: flex;
+    flex: 0 0 33.33%;
+    &--icon .MuiSvgIcon-root {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+  &__search-box--input {
+    border: none;
+    outline: none;
+  }
+
+  &__logo {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  &__user-box {
+    display: flex;
+    flex: 0 0 33.33%;
+
+    & > *,
+    & {
+    transition: fill .5s, transform .5s cubic-bezier(1,.01,.35,2.06);
+    }
+   
+    &--profile.--center-flex,
+    &--cart.--center-flex{
+      transition: transform .2s;
+    }
+    &--profile {
+      margin-left: auto;
+      margin-right: 1rem;
+    }
+
+    & > *  {
+      width: 3rem;
+      height: 3rem;
+    }
+    //in order to get transistion in fill
+    & >  path{
+      fill: var(--color-black);
+    }
+
+    &>*:hover
+    {
+      cursor: pointer;
+      fill: var(--color-secondary);
+      transform: translateY(-.2rem) scale(1.4);
+      
+    }
+
+    &>*:active{
+      transform: translateY(.2rem);
+    }
+ 
+  }
+}
+
+.nav {
+  padding: 2rem;
+  &__container {
+    list-style: none;
+    text-align: center;
+  }
+  &__item {
+    display: inline-block;
+    font-size: 1.6rem;
+    padding-bottom: 1rem;
+    &:not(:last-child) {
+      margin-right: 5rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      border-bottom: 2px solid var(--color-black);
+      margin-bottom: -2px;
+    }
+  }
+}

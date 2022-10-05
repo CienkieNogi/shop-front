@@ -1,0 +1,72 @@
+.main {
+  font-size: 1.4rem;
+  padding-top: 1rem;
+}
+
+
+.hero {
+  height: 50rem;
+  margin-bottom: var(--section-padding);
+  &__bg {
+    height: 100%;
+    background-image: url(../../assets/bg.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+.collection {
+  margin-bottom: var(--section-padding);
+  &__container {
+    display: flex;
+    padding: 0 1.5rem;
+    @media only screen and (max-width: 900px) {
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    height: 35rem;
+    width: 100%;
+    border-radius: 3px;
+    
+    &:not(:last-child){
+      margin-right: 2rem;
+    }
+    &.item--1 {
+      background-image: url(../../assets/steak.jpg);
+      background-size: cover;
+    }
+    &.item--2 {
+      background-image: url(../../assets/pork.jpg);
+      background-size: cover;
+    }
+    &.item--3 {
+      background-image: url(../../assets/poultry.webp);
+      background-size: cover;
+    }
+  }
+}
+
+.reviews {
+  display: flex;
+  padding: 2rem 2rem;
+  &__star {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+     
+  &>*{
+    height: 1.25rem;
+    width: 1.25rem;
+  } 
+  }
+  &__single {
+    &:not(:last-child) {
+      padding-right: 3rem;
+    }
+    & p {
+      text-align: center;
+    }
+  }
+}

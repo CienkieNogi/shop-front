@@ -1,0 +1,40 @@
+.auth {
+  &__container {
+    flex: 0 0 30%;
+  }
+
+  &__header {
+    font-size: 3.5rem;
+    margin: 2rem 0;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    &--label {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    &--input {
+      border-radius: 0;
+      outline: none;
+      border: 1px solid var(--color-grey-dark);
+      padding: 0.5rem 1rem;
+    }
+
+    &--paragraph {
+      font-size: 1.4rem;
+      text-decoration: none;
+      color: black;
+      transition: all 0.2s;
+      &:hover {
+        cursor: pointer;
+        color: var(--color-secondary);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
