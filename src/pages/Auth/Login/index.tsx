@@ -1,20 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/ui/Button";
+import { useLoginUserMutation } from "../../../redux/services/api";
+import { LoginUserInput } from "../../../types";
+import Spinner from "../../../utils/Spinner";
 import "../index.scss"
 
 const Login = () => {
+  const[loginUser,{data,isLoading}]=useLoginUserMutation()
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInput = (e: any) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+  const submit=(e:any) => {
+    e.preventDefault();
+    handleLogin({
+      email:input.email,
+      password:input.password
+    })
+  }
+console.log({data})
+  const handleLogin =async (loginUserInput:LoginUserInput) => {
+    await loginUser({email:input.email, password:input.password})
+  }
   return (
     <div className="auth --center-flex">
-      <form className="auth__container" onClick={(e)=>e.preventDefault()}>
+      {isLoading && <Spinner/>}
+      <form className="auth__container" onSubmit={submit}>
         <h1 className="auth__header">Login</h1>
         <div className="auth__section">
           <label className="auth__section--label">Email</label>
-          <input type="text" className="auth__section--input" />
+          <input onChange={handleInput} name='email' type="text" className="auth__section--input" />
         </div>
         <div className="auth__section --margin-bottom-4">
           <label className="auth__section--label">Password</label>
-          <input type="password" className="auth__section--input" />
+          <input onChange={handleInput} name='password' type="password" className="auth__section--input" />
         </div>
         <div className="auth__section">
         <Button title='Sign in'/>

@@ -6,6 +6,7 @@
   &__header {
     font-size: 3.5rem;
     margin: 2rem 0;
+
   }
 
   &__section {
@@ -35,6 +36,15 @@
         color: var(--color-secondary);
         transform: translateY(-2px);
       }
+    }
+
+    &--error{
+      border: 1px solid red;
+      height: 2.7rem;
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;
+      color: red;
     }
   }
 }

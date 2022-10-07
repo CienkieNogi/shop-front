@@ -7,7 +7,7 @@ type ButtonProps={
 }
 const Button: React.FC<ButtonProps> = ({ title,actionOnClick }) => {
   return (
-    <button className="btn" onClick={actionOnClick?actionOnClick:()=>{}}>
+    <button type="submit" className="btn" onClick={actionOnClick?actionOnClick:()=>{}}>
       <p>{title}</p>
     </button>
   );
