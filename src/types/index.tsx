@@ -4,9 +4,9 @@ export type UserI = {
   email: string;
   password: string;
   role?: "USER" | "ADMIN";
-  Cart?: Cart;
+  Cart?: CartI;
 };
-export type Cart = {
+export type CartI = {
   id: string;
   userId: string;
   summary: number;
@@ -19,3 +19,24 @@ export type RegisterUserInput = {
   confirmPassword: string;
 };
 export interface LoginUserInput extends Omit<RegisterUserInput,'username'|'confirmPassword'>{}
+
+export interface ServerResponse<T> {
+  data:T;
+  error:string;
+  statusCode:number;
+}
+export interface ProductI{
+  id:string;
+  name:string;
+  price:number;
+  plu:number;
+  unit:UnitI
+  category:string;
+  photo?:string;
+}
+export interface InputProductI extends Omit<ProductI,'id'>{}
+export enum UnitI{
+  gram = 'gram',
+  pcs = 'pcs'
+}
+

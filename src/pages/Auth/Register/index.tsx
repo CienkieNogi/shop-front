@@ -4,7 +4,7 @@ import Button from "../../../components/ui/Button";
 import {
   useGetAllUsersQuery,
   useCreateUserMutation,
-} from "../../../redux/services/api";
+} from "../../../redux/features/Auth/authApi";
 import { RegisterUserInput } from "../../../types";
 import Spinner from "../../../utils/Spinner";
 import "../index.scss";

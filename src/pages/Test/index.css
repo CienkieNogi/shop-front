@@ -1,0 +1,21 @@
+.testcont{
+}
+.prod{
+    display: flex;
+    width: 100%;
+
+}
+
+.cosik{
+    margin-left: 40px;
+}
+.test p{
+    margin-bottom: 10px;
+    font-size: 15px;
+    border: 1px solid black;
+}
+.inp-prod{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}

@@ -5,8 +5,14 @@ import { ReactComponent as CartIcon } from "../../../assets/SVG/shopping-cart.sv
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./index.scss";
+import { useGetAllProductsQuery } from "../../../redux/features/Auth/authApi";
 
 const Navigation = () => {
+  //TEST
+  const {data}=useGetAllProductsQuery(undefined)
+  const testClick=()=>{
+    console.log('asdasdasd');
+  }
   return (
     <>
       <div className="top">

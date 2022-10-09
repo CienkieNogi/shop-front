@@ -1,18 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RegisterUserInput, UserI, LoginUserInput } from "../../types";
+import { RegisterUserInput, UserI, LoginUserInput } from "../../../types";
 
 // Define a service using a base URL and expected endpoints
-export const api = createApi({
-  reducerPath: "api",
+export const authApi = createApi({
+  reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/",
     credentials: "include",
     
     mode:'cors',
-    prepareHeaders:(headers)=>{
-      headers.set('Access-Control-Allow-Origin', '*');
-      return headers
-    }
+    
   }),
 
   endpoints: (builder) => ({
@@ -33,6 +30,10 @@ export const api = createApi({
         body,
       }),
     }),
+    //TEST
+    getAllProducts:builder.query({
+      query:()=>'product'
+    })
   }),
 });
 
@@ -42,4 +43,6 @@ export const {
   useGetAllUsersQuery,
   useCreateUserMutation,
   useLoginUserMutation,
-} = api;
+  useGetAllProductsQuery
+} = authApi;
+export default authApi.reducer

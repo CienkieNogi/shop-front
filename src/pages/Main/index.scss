@@ -34,6 +34,7 @@
       margin-right: 2rem;
     }
     &.item--1 {
+     
       background-image: url(../../assets/steak.jpg);
       background-size: cover;
     }
@@ -45,7 +46,11 @@
       background-image: url(../../assets/poultry.webp);
       background-size: cover;
     }
+   &.item--1:hover {
+  transform: scale(1.2);
   }
+  }
+
 }
 
 .reviews {
