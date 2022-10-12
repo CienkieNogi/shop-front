@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../components/ui/Button";
 import { useLoginUserMutation } from "../../../redux/features/Auth/authApi";
@@ -7,14 +7,23 @@ import Spinner from "../../../utils/Spinner";
 import "../index.scss";
 
 const Login = () => {
-  const [loginUser, { data, isLoading }] = useLoginUserMutation();
+  const [loginUser, { data, isLoading,isSuccess, }] = useLoginUserMutation();
+  useEffect(()=>{
+    if(isSuccess && data){
+    localStorage.setItem("ttl",JSON.stringify(data.ttl));
+    localStorage.setItem("_id",JSON.stringify(data.id));
+    }
+  },[isSuccess,data])
+
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
+
   const handleInput = (e: any) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
   const submit = (e: any) => {
     e.preventDefault();
     handleLogin({
@@ -22,9 +31,11 @@ const Login = () => {
       password: input.password,
     });
   };
+
   const handleLogin = async (loginUserInput: LoginUserInput) => {
-    await loginUser({ email: input.email, password: input.password });
+   await loginUser({ email: input.email, password: input.password });
   };
+
   return (
     <div className="auth --center-flex">
       {isLoading && <Spinner />}

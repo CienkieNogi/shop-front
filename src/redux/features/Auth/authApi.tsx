@@ -1,17 +1,8 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { RegisterUserInput, UserI, LoginUserInput } from "../../../types";
+import {  UserI, LoginUserInput } from "../../../types";
+import { api } from "../api/api";
 
 // Define a service using a base URL and expected endpoints
-export const authApi = createApi({
-  reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/",
-    credentials: "include",
-    
-    mode:'cors',
-    
-  }),
-
+export const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query<UserI, void>({
       query: () => `users`,
@@ -23,16 +14,25 @@ export const authApi = createApi({
         body,
       }),
     }),
-    loginUser: builder.mutation<void, LoginUserInput>({
+    loginUser: builder.mutation<{ttl:string,id:string}, LoginUserInput>({
       query: (body) => ({
         url: "session",
         method: "POST",
         body,
       }),
+      
     }),
-    //TEST
-    getAllProducts:builder.query({
-      query:()=>'product'
+    checkIfLoggedIn: builder.mutation<void,void>({
+      query:()=>({
+        url:'session',
+        method:'GET'
+      })
+    }),
+    logout:builder.mutation<void,void>({
+      query:()=>({
+        url:'session/logout',
+        method:'POST'
+      })
     })
   }),
 });
@@ -43,6 +43,7 @@ export const {
   useGetAllUsersQuery,
   useCreateUserMutation,
   useLoginUserMutation,
-  useGetAllProductsQuery
+  useCheckIfLoggedInMutation,
+  useLogoutMutation
 } = authApi;
 export default authApi.reducer
