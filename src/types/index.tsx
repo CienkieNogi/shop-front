@@ -31,8 +31,14 @@ export interface ProductI{
   price:number;
   plu:number;
   unit:UnitI
-  category:string;
+  categoryId:string;
+  category:CategoryI;
   photo?:string;
+  // singleOrder
+}
+export interface CategoryI {
+  id:string;
+  title: string;
 }
 export interface InputProductI extends Omit<ProductI,'id'>{}
 export enum UnitI{

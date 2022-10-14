@@ -15,6 +15,7 @@ const slice = createSlice({
             state.isLoggedIn=true;
         },
         logoutReducer:(state)=>{
+            localStorage.clear()
             state.isLoggedIn=false;
         },
     },

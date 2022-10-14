@@ -7,6 +7,6 @@ export const api = createApi({
         credentials:'include',
         mode:"cors"
     }),
-    tagTypes:['Product'],
+    tagTypes:['Product','Category'],
     endpoints:builder=>({})
 })

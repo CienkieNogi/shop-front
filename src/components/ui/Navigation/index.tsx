@@ -5,12 +5,16 @@ import { ReactComponent as CartIcon } from "../../../assets/SVG/shopping-cart.sv
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./index.scss";
+import { useAppSelector } from "../../../redux/app/hooks";
+import { selectLoggedState } from "../../../pages/Auth/authSlice";
 
 const Navigation = () => {
+  const islogged=useAppSelector(selectLoggedState)
   enum LINKS{
     LOGIN ='account/login',
     PROFILE = 'profile'
   }
+
   return (
     <>
       <div className="top">
@@ -24,12 +28,15 @@ const Navigation = () => {
             <SearchIcon />
           </div>
         </div>
+        <Link to='/' >
+
         <img src={logo} alt="" className="top__logo" />
+        </Link>
         <div className="top__user-box">
           <div className="top__user-box--profile --center-flex">
             <CartIcon />
           </div>
-          <Link to={"/account/login"} className="top__user-box--cart --center-flex">
+          <Link  to={islogged?LINKS.PROFILE:LINKS.LOGIN} className="top__user-box--cart --center-flex">
             <ClientIcon />
           </Link>
         </div>

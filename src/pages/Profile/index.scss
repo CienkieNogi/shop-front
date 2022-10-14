@@ -1,0 +1,35 @@
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    &__content{
+        // flex-basis: 50%;
+        &>*:not(:last-child){
+            margin-bottom: 1rem;
+        }
+        &--header{
+            font-size: 3rem;
+            
+        }
+
+        &--details{
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+    &--admin{
+        margin-top: 8rem;
+        & .btn{
+            width: 100%;
+        }
+    }
+    }
+    &__btn{
+        align-self: baseline;
+        width: 100%;
+        margin-top: 2rem;
+        & .btn{
+            width: 100%;
+        }
+    }
+}

@@ -14,7 +14,7 @@ export const authApi = api.injectEndpoints({
         body,
       }),
     }),
-    loginUser: builder.mutation<{ttl:string,id:string}, LoginUserInput>({
+    loginUser: builder.mutation<{ttl:string,id:string,role:string}, LoginUserInput>({
       query: (body) => ({
         url: "session",
         method: "POST",

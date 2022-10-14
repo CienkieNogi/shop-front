@@ -1,0 +1,56 @@
+.adminboard {
+  &--paragraph {
+    font-size: 1.4rem;
+  }
+  &__menu {
+    padding: 2rem 3rem;
+
+    &--section {
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
+
+      &-input form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &-input input {
+        padding: 1rem 2rem;
+      }
+    }
+  }
+  &--select {
+    &-item {
+      border: 1px solid black;
+      padding: 1rem 2rem;
+
+      p {
+        font-size: 1.5rem;
+        font-weight: 200;
+      }
+
+      &:not(:first-child) {
+        border-top: none;
+      }
+    
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+  }
+  &--title {
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  &--icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-bottom: 2rem;
+    cursor: pointer;
+  }
+}
+

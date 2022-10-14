@@ -17,3 +17,9 @@
     transform: translateY(-1px);
    }
 }
+// .btn[data-color='main']{
+//         background-color: var(--color-secondary);
+// }
+.btn[data-color='secondary']{
+        background-color: var(--color-accent);
+}
