@@ -8,7 +8,7 @@ import "./index.scss";
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
+  const isAdmin = localStorage.getItem('_role')?.replace(/"/g,'')
   const handleLogout = () => {
     dispatch(logoutReducer());
     navigate("/account/login");
@@ -24,6 +24,8 @@ const Profile = () => {
         <h3 className="profile__content--details">Username</h3>
         <h3 className="profile__content--details">Email</h3>
         <h3 className="profile__content--details">Role</h3>
+        {isAdmin === "ADMIN" && (
+
         <div className="profile__content--admin">
           <Button
             actionOnClick={redirect}
@@ -31,6 +33,7 @@ const Profile = () => {
             title="Manage Shop"
           />
         </div>
+        )}
         <div className="profile__btn">
           <Button actionOnClick={handleLogout} title="Logout" />
         </div>

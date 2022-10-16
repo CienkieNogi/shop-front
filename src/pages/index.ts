@@ -2,10 +2,14 @@ import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import Main from "./Main";
 import Profile from "./Profile";
+import AdminBoard from "./AdminBoard";
+import EditCategory from "./AdminBoard/Category/EditCategory";
 
 export {
     Login,
     Register,
     Main,
-    Profile
+    Profile,
+    AdminBoard,
+    EditCategory
 }

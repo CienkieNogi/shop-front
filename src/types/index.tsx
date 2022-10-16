@@ -20,6 +20,11 @@ export type RegisterUserInput = {
 };
 export interface LoginUserInput extends Omit<RegisterUserInput,'username'|'confirmPassword'>{}
 
+export interface ServerGenericResponse {
+  data:object;
+  error:string;
+  statusCode :number;
+}
 export interface ServerResponse<T> {
   data:T;
   error:string;

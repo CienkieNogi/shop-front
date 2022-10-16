@@ -2,15 +2,17 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navigation from "./components/ui/Navigation";
 import ProtectedRoute from "./components/utilities/ProtectedRoute";
-import { Login, Main, Profile, Register } from "./pages";
-import AdminBoard from "./pages/AdminBoard";
+import { Login, Main, Profile, Register,AdminBoard,EditCategory } from "./pages";
 import { loginReducer } from "./pages/Auth/authSlice";
 import { useAppDispatch } from "./redux/app/hooks";
 
 function App() {
   const ttl = localStorage.getItem("ttl");
+  const role = localStorage.getItem("_role")?.replace(/"/g, "");
 
   const isAllowed = ttl ? true : false;
+  const isAdminAllowed = ttl && role==="ADMIN"? true : false;
+  console.log(isAllowed);
   const dateNow = new Date(Date.now()).toISOString();
 
   const dispatch = useAppDispatch();
@@ -18,11 +20,11 @@ function App() {
   useEffect(() => {
     //If there is ttl item in storage, we verify if it is expired
     if (ttl) {
-      dispatch(loginReducer());
+      dispatch(loginReducer(role));
       const tokenExpDate = JSON.parse(ttl);
       if (dateNow > tokenExpDate) {
         //token is expired
-        localStorage.clear()
+        localStorage.clear();
       }
     }
     //TODO if localStorage is empty, check if backend response has valid token
@@ -54,9 +56,21 @@ function App() {
               <ProtectedRoute
                 redirectPath="/profile"
                 //TODO: check if user has admin role
-                isAllowed={isAllowed}
+                isAllowed={isAdminAllowed}
               >
                 <AdminBoard />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/account/adminboard/category/:categoryId"
+            element={
+              <ProtectedRoute
+                redirectPath="/profile"
+                //TODO: check if user has admin role
+                isAllowed={isAdminAllowed}
+              >
+                <EditCategory />
               </ProtectedRoute>
             }
           ></Route>

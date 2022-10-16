@@ -4,7 +4,18 @@
   }
   &__menu {
     padding: 2rem 3rem;
+    // max-width: 32rem;
 
+    &--error {
+      border: 1px solid red;
+      background-color: rgba(red, 0.3);
+      padding: 1rem 2rem;
+      & p {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+    }
     &--section {
       &:not(:last-child) {
         margin-bottom: 3rem;
@@ -17,14 +28,21 @@
 
       &-input input {
         padding: 1rem 2rem;
+        border-radius: 0%;
+        border: 1px solid var(--color-grey-dark);
+        outline: none;
       }
     }
   }
   &--select {
+    &-item:hover .adminboard--icon {
+      visibility: visible;
+    }
     &-item {
-      border: 1px solid black;
+      border: 1px solid var(--color-grey-dark);
       padding: 1rem 2rem;
-
+      display: flex;
+      justify-content: space-between;
       p {
         font-size: 1.5rem;
         font-weight: 200;
@@ -33,17 +51,23 @@
       &:not(:first-child) {
         border-top: none;
       }
-    
-      &:hover{
+
+      &:hover {
         cursor: pointer;
+
+        background-color: rgba(red, 0.2);
+      }
+      &--default {
+        background-image: var(--color-grey-dark);
       }
     }
-
   }
   &--title {
     font-weight: 400;
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--color-grey-dark);
   }
   &--icon-container {
     display: flex;
@@ -52,5 +76,53 @@
     // margin-bottom: 2rem;
     cursor: pointer;
   }
-}
+  &--default {
+    background-color: var(--color-grey-light);
+  }
+  &--icon {
+    fill: var(--color-medium-black);
+    visibility: hidden;
+  }
+  &--column {
+    flex-direction: column;
+  }
 
+  &__nav {
+    display: flex;
+    width: 32rem;
+    padding: 0 3rem;
+
+    &--item {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      padding: 1rem 0;
+      border: 1px solid var(--color-grey-light);
+      font-size: 1.2rem;
+      &:hover {
+        cursor: pointer;
+        border-color: var(--color-medium-black);
+      }
+
+      &.--nav-active{
+        border-color: var(--color-medium-black);
+      }
+    }
+  }
+}
+.custom-select{
+  position: relative;
+
+}
+.custom-select select {
+width: 100%;
+padding: 1rem 2rem;
+outline: none;
+border: 1px solid var(--color-grey-dark);
+background-color: white;
+}
+.custom-select select option{
+  padding: 1rem 2rem;
+margin-top: 2rem;
+font-size: 1.8rem;
+}

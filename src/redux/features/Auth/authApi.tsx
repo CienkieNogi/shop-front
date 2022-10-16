@@ -3,7 +3,9 @@ import { api } from "../api/api";
 
 // Define a service using a base URL and expected endpoints
 export const authApi = api.injectEndpoints({
+  
   endpoints: (builder) => ({
+    
     getAllUsers: builder.query<UserI, void>({
       query: () => `users`,
     }),
@@ -20,7 +22,6 @@ export const authApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-      
     }),
     checkIfLoggedIn: builder.mutation<void,void>({
       query:()=>({

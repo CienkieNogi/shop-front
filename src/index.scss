@@ -34,9 +34,20 @@ body {
   align-items: center !important;
 }
 
+.--margin-bottom-1{
+  margin-bottom: 1rem !important;
+}
 .--margin-bottom-2{
   margin-bottom: 2rem !important;
 }
 .--margin-bottom-4{
   margin-bottom: 4rem !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }

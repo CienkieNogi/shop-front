@@ -45,8 +45,8 @@ const Login = () => {
 
   const handleLogin = async (loginUserInput: LoginUserInput) => {
     try {
-      await loginUser({ email: input.email, password: input.password });
-      // navigate("/",{replace:true});
+      await loginUser({ email: input.email, password: input.password })
+
       //TODO: is it the best solution?
       window.location.href="http://localhost:3000/"
     } catch (err) {

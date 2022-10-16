@@ -3,7 +3,8 @@ import { RootState } from "../../redux/app/store"
 import { authApi } from "../../redux/features/Auth/authApi"
 
 type AuthState ={
-    isLoggedIn: boolean,
+    isLoggedIn: boolean;
+    role:'ADMIN'| 'USER'|undefined;
 
 }
 
@@ -11,12 +12,14 @@ const slice = createSlice({
     name:'auth',
     initialState:{isLoggedIn:false}as AuthState,
     reducers:{
-        loginReducer:(state)=>{
+        loginReducer:(state,{payload})=>{
             state.isLoggedIn=true;
+            state.role=payload
         },
         logoutReducer:(state)=>{
             localStorage.clear()
             state.isLoggedIn=false;
+            state.role=undefined;
         },
     },
     extraReducers:(builder)=>{
