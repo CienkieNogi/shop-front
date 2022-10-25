@@ -9,7 +9,7 @@ import {
   useGetAllCategoriesQuery,
 } from "../../../redux/features/Category/categorySlice";
 import { useNavigate } from "react-router-dom";
-import ErrorBox from "./ErrorBox";
+import ErrorBox from "../ErrorBox";
 
 const Category = () => {
   const [expand, setExpand] = useState(false);

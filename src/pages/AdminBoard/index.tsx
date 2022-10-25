@@ -8,7 +8,6 @@ const AdminBoard = () => {
     first: false,
     second: true,
   });
-  console.log(open);
   return (
     <div className="adminboard adminboard--column --center-flex">
       <div className="adminboard__nav">

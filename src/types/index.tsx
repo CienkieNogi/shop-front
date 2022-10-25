@@ -30,6 +30,14 @@ export interface ServerResponse<T> {
   error:string;
   statusCode:number;
 }
+export interface ServerResponseWithCount<T> {
+  data:{
+    products:T;
+    count:number;
+  };
+  error:string;
+  statusCode:number;
+}
 export interface ProductI{
   id:string;
   name:string;
@@ -45,7 +53,7 @@ export interface CategoryI {
   id:string;
   title: string;
 }
-export interface InputProductI extends Omit<ProductI,'id'>{}
+export interface InputProductI extends Omit<ProductI,'id'|'category'>{}
 export enum UnitI{
   gram = 'gram',
   pcs = 'pcs'

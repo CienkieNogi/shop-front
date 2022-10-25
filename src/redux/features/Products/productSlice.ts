@@ -1,7 +1,10 @@
+import { createEntityAdapter } from "@reduxjs/toolkit";
 import {
-  createEntityAdapter,
-} from "@reduxjs/toolkit";
-import { InputProductI, ProductI, ServerResponse } from "../../../types";
+  InputProductI,
+  ProductI,
+  ServerResponse,
+  ServerResponseWithCount,
+} from "../../../types";
 import { api } from "../api/api";
 
 const productsAdapter = createEntityAdapter<ProductI>({
@@ -35,17 +38,20 @@ export const extendedApiSlice = api.injectEndpoints({
       query: (id) => ({
         url: `/product/${id}`,
       }),
-      //@ts-ignore
       transformResponse: (res: ServerResponse<ProductI>) => {
-        // return productsAdapter.setOne(initialState,res.data)
         return res.data;
       },
+      providesTags: (res, err, arg) => [{ type: "Product", id: arg }],
     }),
-    getProductByName: builder.mutation<ProductI, string>({
-      query: (name) => ({
-        url: `/product/name/search/1?name=${name}`,
+    getProductByName: builder.mutation<
+      ServerResponseWithCount<ProductI[]>,
+      { page: number; name: string }
+    >({
+      query: ({ page, name }) => ({
+        url: `/product/name/search/${page}?name=${name}`,
         method: "GET",
       }),
+      invalidatesTags: [{ type: "Product", id: "LIST" }],
     }),
     getProductByCategory: builder.mutation<
       ProductI[],
@@ -59,17 +65,26 @@ export const extendedApiSlice = api.injectEndpoints({
         const products = res.data.map((el) => el);
         return products;
       },
-   
-
     }),
 
-    createProduct: builder.mutation<ServerResponse<ProductI>, InputProductI>({
+    createProduct: builder.mutation<
+      ServerResponse<ProductI>,
+      Partial<InputProductI>
+    >({
       query: (body) => ({
         url: `/product`,
         method: "POST",
         body,
       }),
       invalidatesTags: [{ type: "Product", id: "LIST" }],
+    }),
+    editProduct: builder.mutation<ServerResponse<{}>, Partial<ProductI>>({
+      query: (body) => ({
+        url: `/product/${body.id}`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["Product"],
     }),
     deleteProduct: builder.mutation<ServerResponse<{}>, Partial<ProductI>>({
       query: ({ id }) => ({
@@ -91,4 +106,5 @@ export const {
   useCreateProductMutation,
   useDeleteProductMutation,
   useGetProductByCategoryMutation,
+  useEditProductMutation,
 } = extendedApiSlice;

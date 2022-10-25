@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navigation from "./components/ui/Navigation";
 import ProtectedRoute from "./components/utilities/ProtectedRoute";
 import { Login, Main, Profile, Register,AdminBoard,EditCategory } from "./pages";
+import Product from "./pages/AdminBoard/ProductBoard/Product";
 import { loginReducer } from "./pages/Auth/authSlice";
 import { useAppDispatch } from "./redux/app/hooks";
 
@@ -71,6 +72,18 @@ function App() {
                 isAllowed={isAdminAllowed}
               >
                 <EditCategory />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/account/adminboard/product/:productId"
+            element={
+              <ProtectedRoute
+                redirectPath="/profile"
+                //TODO: check if user has admin role
+                isAllowed={isAdminAllowed}
+              >
+                <Product />
               </ProtectedRoute>
             }
           ></Route>
