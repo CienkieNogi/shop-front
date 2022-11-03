@@ -22,7 +22,7 @@ const ProductBoard: React.FC = () => {
           <p className="adminboard--paragraph">Search Product</p>
           {expand.search ? <ArrowDown /> : <ArrowUp />}
         </div>
-        <SearchProduct />
+        {expand.search && <SearchProduct/> }
         <div
           className={`adminboard__menu--section-nav --margin-bottom-4 ${!expand.create?'--underline':''}`}
           onClick={() => setExpand({ ...expand, create: !expand.create })}

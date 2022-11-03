@@ -5,6 +5,9 @@ import ProtectedRoute from "./components/utilities/ProtectedRoute";
 import { Login, Main, Profile, Register,AdminBoard,EditCategory } from "./pages";
 import Product from "./pages/AdminBoard/ProductBoard/Product";
 import { loginReducer } from "./pages/Auth/authSlice";
+import Cart from "./pages/Cart";
+import Shop from "./pages/Shop";
+import ProductPage from "./pages/Shop/ProductPage";
 import { useAppDispatch } from "./redux/app/hooks";
 
 function App() {
@@ -39,7 +42,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/account/login" element={<Login />} />
           <Route path="/account/register" element={<Register />} />
-
+          <Route path='/shop' element={<Shop />} />
+          <Route path='/shop/product/:id' element={<ProductPage/>} />
           <Route
             path="/profile"
             element={
@@ -52,11 +56,21 @@ function App() {
             }
           ></Route>
           <Route
+            path="/cart"
+            element={
+              <ProtectedRoute
+                redirectPath="/account/login"
+                isAllowed={isAllowed}
+              >
+                <Cart />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
             path="/account/adminboard"
             element={
               <ProtectedRoute
                 redirectPath="/profile"
-                //TODO: check if user has admin role
                 isAllowed={isAdminAllowed}
               >
                 <AdminBoard />
@@ -68,7 +82,6 @@ function App() {
             element={
               <ProtectedRoute
                 redirectPath="/profile"
-                //TODO: check if user has admin role
                 isAllowed={isAdminAllowed}
               >
                 <EditCategory />
@@ -80,7 +93,6 @@ function App() {
             element={
               <ProtectedRoute
                 redirectPath="/profile"
-                //TODO: check if user has admin role
                 isAllowed={isAdminAllowed}
               >
                 <Product />

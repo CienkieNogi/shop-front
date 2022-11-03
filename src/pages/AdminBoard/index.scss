@@ -161,6 +161,7 @@
     border-top: none;
     text-align: center;
     width: 100%;
+    padding: .5rem 0;
 
     &:focus{
       outline: none;
@@ -170,5 +171,11 @@
     width: 100%;
     outline: none;
     text-align: center;
+    padding: 1rem 0;
+    background-color: white;
+    &--no-top{
+    border-top: none;
+    }
+     
   }
 }

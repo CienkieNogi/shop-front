@@ -16,22 +16,23 @@ const initialState = productsAdapter.getInitialState();
 
 export const extendedApiSlice = api.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query<ProductI[], void>({
+    getProducts: builder.query<ServerResponseWithCount<ProductI[]>, void>({
       query: () => "/product",
-      transformResponse: (res: ServerResponse<ProductI[]>) => {
-        const products = res.data.map((prod) => prod);
-        return products;
-      },
-      providesTags: (result) =>
-        // is result available?
-        result
-          ? // successful query
-            [
-              ...result.map(({ id }) => ({ type: "Product", id } as const)),
-              { type: "Product", id: "LIST" },
-            ]
-          : // an error occurred, but we still want to refetch this query when `{ type: 'Product', id: 'LIST' }` is invalidated
-            [{ type: "Product", id: "LIST" }],
+      // transformResponse: (res: ServerResponseWithCount<ProductI[]>) => {
+      //   const products = res.data.products.map((prod) => prod);
+      //   return products;
+      // },
+      // providesTags: (result) =>
+      //   // is result available?
+      //   result
+      //     ? // successful query
+      //       [
+      //         ...result.map(({ id }) => ({ type: "Product", id } as const)),
+      //         { type: "Product", id: "LIST" },
+      //       ]
+      //     : // an error occurred, but we still want to refetch this query when `{ type: 'Product', id: 'LIST' }` is invalidated
+      //       [{ type: "Product", id: "LIST" }],
+      providesTags: [{ type: "Product", id: "LIST"}]
     }),
 
     getProductById: builder.query<ProductI, string>({
@@ -54,17 +55,17 @@ export const extendedApiSlice = api.injectEndpoints({
       invalidatesTags: [{ type: "Product", id: "LIST" }],
     }),
     getProductByCategory: builder.mutation<
-      ProductI[],
+      ServerResponseWithCount<ProductI[]>,
       { category: string; page: number }
     >({
       query: ({ category, page }) => ({
         url: `/product/category/search/${page}?category=${category}`,
         method: "GET",
       }),
-      transformResponse: (res: ServerResponse<ProductI[]>) => {
-        const products = res.data.map((el) => el);
-        return products;
-      },
+      // transformResponse: (res: ServerResponse<ProductI[]>) => {
+      //   const products = res.data.map((el) => el);
+      //   return products;
+      // },
     }),
 
     createProduct: builder.mutation<

@@ -1,0 +1,44 @@
+.cart{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 50rem;
+    &__header{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        &-title{
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        &-clear{
+
+        }
+    }
+
+    &__items--container{
+        width: 100%;
+        border: 1px solid var(--color-grey-dark);
+        border-radius: 1rem;
+        &>*:not(:last-child){
+            border-bottom: 1px solid var(--color-grey-dark);
+        }
+    }
+    &__item{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1rem 2rem;
+
+        &--photo{
+            width: 7rem;
+            height: 7rem;
+        }
+        &--paragraph{
+            display: flex;
+            align-items: center;
+            
+        }
+    }
+}

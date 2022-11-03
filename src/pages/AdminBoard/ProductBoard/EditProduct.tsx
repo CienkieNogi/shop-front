@@ -30,10 +30,10 @@ const EditProduct: React.FC<Props> = ({ product }) => {
         price:Number(pluRef.current?.value),
         unit:unitRef.current?.value as UnitI
     })
-    // if(isEditProductSuccess){
-    //     navigate(-1)
-    // }
   }
+    if(isEditProductSuccess){
+        navigate(-1)
+    }
   
   return (
     <div className="adminboard adminboard--column --center-flex">
@@ -58,7 +58,7 @@ const EditProduct: React.FC<Props> = ({ product }) => {
             {isSuccess && (
               <select
                 ref={categoryRef}
-                className="product__select"
+                className="product__select product__select--no-top"
                 defaultValue={product?.category?.id}
               >
                 {data.map((category) => (

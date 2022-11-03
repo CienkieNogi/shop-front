@@ -5,6 +5,7 @@
   --color-medium-black: #272727;
   --color-secondary: #9b2e34;
   --color-accent:#72a4e6;
+  --color-green-light:#167440;
   --section-padding: 8rem;
 
 }
@@ -47,6 +48,9 @@ body::-webkit-scrollbar {
 }
 .--margin-bottom-4{
   margin-bottom: 4rem !important;
+}
+.--padding-hor-4{
+  padding: 0 4rem;
 }
 .--underline{
   border-bottom: 1px solid var(--color-grey-dark);

@@ -15,6 +15,7 @@ FetchBaseQueryError
     //Token is expired! We log out user and clear localStorage
     //@ts-ignore
     if(result?.error?.data?.error==='Unauthorized'){
+        console.log("ERROR: " + result.error);
         localStorage.clear()
         window.location.href = 'http://localhost:3000/account/login'
     }
@@ -24,6 +25,6 @@ return result
 export const api = createApi({
     reducerPath:'api',
     baseQuery:baseQueryWithReauth,
-    tagTypes:['Product','Category'],
+    tagTypes:['Product','Category','Cart'],
     endpoints:builder=>({})
 })

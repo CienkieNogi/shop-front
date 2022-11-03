@@ -1,57 +1,120 @@
-import React, {  useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../../../components/ui/Button";
 import { ReactComponent as ArrowLeft } from "../../../assets/SVG/arrow-bold-left.svg";
 import { ReactComponent as ArrowRight } from "../../../assets/SVG/arrow-bold-right.svg";
-import { useGetProductByNameMutation } from "../../../redux/features/Products/productSlice";
+import {
+  useGetProductByCategoryMutation,
+  useGetProductByNameMutation,
+} from "../../../redux/features/Products/productSlice";
 import Table from "../../../components/ui/Table";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../../../utils/Spinner";
+import { useGetAllCategoriesQuery } from "../../../redux/features/Category/categorySlice";
 const SearchProduct = () => {
   const nameRef = useRef<HTMLInputElement>(null);
-  const [name, setName] = useState('')
-  const [searchProduct, { data, error, isSuccess,isLoading }] =
+  const selectRef = useRef<HTMLSelectElement>(null);
+  const [name, setName] = useState("");
+  const [searchBy, setSearchBy] = useState(0);
+  const [searchProductByName, { data, error, isSuccess, isLoading }] =
     useGetProductByNameMutation();
-
-
+  const { data: categoriesData, isSuccess: categoriesLoaded } =
+    useGetAllCategoriesQuery();
+  const [
+    searchProductByCategory,
+    { data: productData, isSuccess: isByCategorySuccess },
+  ] = useGetProductByCategoryMutation();
   const navigate = useNavigate();
-  
+
   const takeParameter = 5;
-  const handleSearch = async (e: any) => {
+
+  const handleSearchByName = async (e: any) => {
     e.preventDefault();
-    console.log("AAA", e.target.id);
     if (nameRef?.current) {
-      await searchProduct({
+      await searchProductByName({
         page: e.target.id || 1,
         // name: nameRef.current?.value,
-        name
+        name,
       });
     }
+  };
+
+  const handleSearchByCategory = async (e: any) => {
+    e.preventDefault();
+    if (selectRef?.current) {
+      await searchProductByCategory({
+        category: selectRef.current.value,
+        page: e.target.id || 1,
+      });
+    }
+  };
+
+  const handleChangeParameterDecrease = () => {
+    setSearchBy((prevState) => (prevState - 1) % 2);
+  };
+
+  const handleChangeParameterIncrease = () => {
+    setSearchBy((prevState) => (prevState + 1) % 2);
   };
 
   const handleRedirectToProduct = (id: string) => {
     navigate(`/account/adminboard/product/${id}`);
   };
-  if(isLoading){
-    return (
-      <Spinner/>
-    )
+  const toggledByName=Math.abs(searchBy)===0
+  const toggledByCategory=Math.abs(searchBy)===1
+
+  if (isLoading) {
+    return <Spinner />;
   }
   return (
     <div className="adminboard__menu--section-input --margin-bottom-4">
       <div className="adminboard--icon-container --margin-bottom-2">
-        <ArrowLeft className="adminboard--icon-container-arrows" />
+        <ArrowLeft
+          className="adminboard--icon-container-arrows"
+          onClick={handleChangeParameterDecrease}
+        />
         <p className="adminboard--paragraph">change parameter</p>
-        <ArrowRight className="adminboard--icon-container-arrows" />
+        <ArrowRight
+          className="adminboard--icon-container-arrows"
+          onClick={handleChangeParameterIncrease}
+        />
       </div>
-      <form onSubmit={handleSearch} className="--margin-bottom-4">
-        <input placeholder="Search Name" ref={nameRef} onChange={(e)=>setName(e.target.value)}/>
-        <Button title="Search" />
-      </form>
-      {isSuccess && (
+      {toggledByName && (
+        <form onSubmit={handleSearchByName} className="--margin-bottom-4">
+          <input
+            placeholder="Search Name"
+            ref={nameRef}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Button title="Search" />
+        </form>
+      )}
+      {toggledByCategory && (
+        <form onSubmit={handleSearchByCategory} className="--margin-bottom-4">
+          {categoriesLoaded && (
+            <select ref={selectRef} className="product__select">
+              {categoriesData.map((el) => (
+                <option key={el.id} value={el.id}>
+                  {el.title}
+                </option>
+              ))}
+            </select>
+          )}
+          <Button title="Search" />
+        </form>
+      )}
+      {isSuccess&& toggledByName && (
         <Table
           result={data?.data.products}
           numberOfPages={data ? data?.data.count / takeParameter : undefined}
-          actionOnPageSelect={handleSearch}
+          actionOnPageSelect={handleSearchByName}
+          actionOnCellSelect={handleRedirectToProduct}
+        />
+      )}
+      {isByCategorySuccess && toggledByCategory && (
+        <Table
+          result={productData?.data.products}
+          numberOfPages={productData ? productData?.data.count / takeParameter : undefined}
+          actionOnPageSelect={handleSearchByCategory}
           actionOnCellSelect={handleRedirectToProduct}
         />
       )}
