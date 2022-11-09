@@ -27,9 +27,10 @@ const EditProduct: React.FC<Props> = ({ product }) => {
         name: nameRef.current?.value,
         categoryId: categoryRef.current?.value,
         plu:Number(pluRef.current?.value),
-        price:Number(pluRef.current?.value),
+        price:Number(priceRef.current?.value),
         unit:unitRef.current?.value as UnitI
     })
+    console.log(categoryRef.current?.value)
   }
     if(isEditProductSuccess){
         navigate(-1)

@@ -9,7 +9,7 @@ const Cart:React.FC<Props> = ({amountOfItems}) => {
   return (
     <div className="top__user-box--profile --center-flex">
       <CartIcon className="top__user-box--icon" />
-      {amountOfItems && amountOfItems>0 && (
+      { amountOfItems!>0 && (
       <div className="top__user-box--badge">
         <p>{amountOfItems}</p>
       </div>

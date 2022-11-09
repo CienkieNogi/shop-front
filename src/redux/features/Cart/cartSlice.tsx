@@ -15,8 +15,24 @@ export const cartSlice=api.injectEndpoints({
         body:{amount,multiplier}
         }),
         invalidatesTags:["Cart"]
-    })
+    }),
+   removeSingleOrder:builder.mutation<ServerResponse<{}>,{id:string,singleOrderId:string}>({
+        query:({id,singleOrderId})=>({
+            url:`/cart/removeOne/${id}/${singleOrderId}`,
+            method:"DELETE",
+            
+        }),
+        invalidatesTags:["Cart"]
+   }),
+   removeAllItemsFromCart:builder.mutation<ServerResponse<{}>,{id:string}>({
+    query:({id})=>({
+        url:`/cart/all`,
+        method:"DELETE",
+        body:({id})
+    }),
+    invalidatesTags:["Cart"]
    }) 
+   })
 })
 
-export const {useGetUsersCartQuery,useAddToCartMutation}=cartSlice
+export const {useGetUsersCartQuery,useAddToCartMutation,useRemoveSingleOrderMutation,useRemoveAllItemsFromCartMutation}=cartSlice

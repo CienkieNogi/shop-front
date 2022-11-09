@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ReactComponent as ClientIcon } from "../../../assets/SVG/user.svg";
 import { ReactComponent as SearchIcon } from "../../../assets/SVG/magnifying-glass.svg";
-import { ReactComponent as CartIcon } from "../../../assets/SVG/shopping-cart.svg";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./index.scss";
 import { useAppSelector } from "../../../redux/app/hooks";
 import { selectLoggedState } from "../../../pages/Auth/authSlice";
-import { useGetUsersCartQuery } from "../../../redux/features/Cart/cartSlice";
 import Cart from "./Cart";
+import { UseGetCart } from "../../../hooks/useCartHook";
 
 const Navigation = () => {
   const islogged = useAppSelector(selectLoggedState);
-  const [items, setItems] = useState<number|undefined>(undefined)
-  const {data,isSuccess} = useGetUsersCartQuery()
+  const cartResults = UseGetCart();
+  const { items } = cartResults;
+
   enum LINKS {
     LOGIN = "account/login",
     PROFILE = "profile",
     CART = "cart",
   }
-  const numberOfItemsInCart= data?.data.singleOrders.length 
-  console.log('NUMBER',numberOfItemsInCart)
-  useEffect(()=>{
-    if(isSuccess){
-      setItems(numberOfItemsInCart)
-    }
-  },[numberOfItemsInCart,isSuccess])
 
   return (
     <>
@@ -45,7 +38,7 @@ const Navigation = () => {
         </Link>
         <div className="top__user-box">
           <Link to={islogged ? LINKS.CART : LINKS.LOGIN}>
-            <Cart amountOfItems={items}/>
+            <Cart amountOfItems={items} />
           </Link>
           <Link to={islogged ? LINKS.PROFILE : LINKS.LOGIN}>
             <div className="top__user-box--cart --center-flex">

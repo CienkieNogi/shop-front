@@ -2,16 +2,20 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import { useAppDispatch } from "../../redux/app/hooks";
+import { useLogoutMutation } from "../../redux/features/Auth/authApi";
 import { logoutReducer } from "../Auth/authSlice";
 import "./index.scss";
 
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [logout,{isSuccess}]=useLogoutMutation()
   const isAdmin = localStorage.getItem('_role')?.replace(/"/g,'')
-  const handleLogout = () => {
+  const handleLogout = async() => {
+    await logout()
     dispatch(logoutReducer());
     navigate("/account/login");
+    window.location.reload()
   };
 
   const redirect = () => {

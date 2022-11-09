@@ -9,7 +9,7 @@ export type UserI = {
 
 export type CartI = {
   id: string;
-  singleOrders: object[];
+  singleOrders: SingleOrderI[];
   userId: string;
   summary: number;
 };
@@ -23,7 +23,10 @@ export type SingleOrderI={
   cart:CartI;
   cartId:string;
 }
-
+export type CartItemI={
+  name:string;
+  
+}
 export type RegisterUserInput = {
   username: string;
   email: string;
