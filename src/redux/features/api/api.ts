@@ -19,9 +19,11 @@ FetchBaseQueryError
         localStorage.clear()
         window.location.href = 'http://localhost:3000/account/login'
     }
-    // if(result?.error?.data?.error==='Access token is required'){
-    //     // window.location.href = 'http://localhost:3000/account/login'
-    // }
+    //@ts-ignore
+    if(result?.error?.data?.error==='Access token is required'){
+        // window.location.href = 'http://localhost:3000/account/login'
+        console.log('ACC TOK REQ');
+    }
 return result
 }
 

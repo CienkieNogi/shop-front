@@ -80,3 +80,10 @@ export enum UnitI {
   gram = "gram",
   pcs = "pcs",
 }
+
+  export enum LINKS {
+    LOGIN = "account/login",
+    PROFILE = "profile",
+    CART = "cart",
+    ABOUT_US='aboutus'
+  }

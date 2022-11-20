@@ -10,14 +10,11 @@ import "./index.scss";
 import { UseGetCart } from "../../hooks/useCartHook";
 
 const Cart = () => {
-  // const { data, isSuccess, isLoading } = useGetUsersCartQuery();
-  const cartResult=UseGetCart()
-  const {items,isSuccess,isLoading,cart,orders}=cartResult
+  const cartResult = UseGetCart();
+  const { items, isSuccess, isLoading, cart, orders } = cartResult;
   const [removeAllItemsFromCart, { isSuccess: isRemoveAllSuccess }] =
     useRemoveAllItemsFromCartMutation();
-  // const numberOfItemsInCart = data?.data?.singleOrders.length;
-  // const cartId = data?.data?.id;
-  const cartId=cart?.data.id
+  const cartId = cart?.data.id;
   const clearCart = async () => {
     if (!cartId) {
       return;
@@ -27,7 +24,6 @@ const Cart = () => {
   if (isLoading) {
     return <Spinner />;
   }
-// console.log('NAV',data);
   return (
     <div className="cart --center-flex">
       <div className="cart__header --margin-bottom-4">

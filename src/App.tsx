@@ -1,22 +1,34 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navigation from "./components/ui/Navigation";
+import NavPicker from "./components/ui/Navigation/NavWrapper";
 import ProtectedRoute from "./components/utilities/ProtectedRoute";
-import { Login, Main, Profile, Register,AdminBoard,EditCategory } from "./pages";
-import Product from "./pages/AdminBoard/ProductBoard/Product";
+import {
+  Login,
+  Main,
+  Product,
+  Profile,
+  Register,
+  AdminBoard,
+  EditCategory,
+  Shop,
+  Cart,
+  ProductPage,
+  AboutUs
+} from "./pages";
 import { loginReducer } from "./pages/Auth/authSlice";
-import Cart from "./pages/Cart";
-import Shop from "./pages/Shop";
-import ProductPage from "./pages/Shop/ProductPage";
 import { useAppDispatch } from "./redux/app/hooks";
 
 function App() {
   const ttl = localStorage.getItem("ttl");
   const role = localStorage.getItem("_role")?.replace(/"/g, "");
+  const username = localStorage.getItem("_username")?.replace(/"/g, "");
 
+  //Check if user is logged in
   const isAllowed = ttl ? true : false;
-  const isAdminAllowed = ttl && role==="ADMIN"? true : false;
-  console.log(isAllowed);
+
+  //Check if admin is logged in
+  const isAdminAllowed = ttl && role === "ADMIN" ? true : false;
+
   const dateNow = new Date(Date.now()).toISOString();
 
   const dispatch = useAppDispatch();
@@ -24,7 +36,7 @@ function App() {
   useEffect(() => {
     //If there is ttl item in storage, we verify if it is expired
     if (ttl) {
-      dispatch(loginReducer(role));
+      dispatch(loginReducer({role:role!,username:username!}));
       const tokenExpDate = JSON.parse(ttl);
       if (dateNow > tokenExpDate) {
         //token is expired
@@ -37,13 +49,15 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navigation />
+        <NavPicker />
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/account/login" element={<Login />} />
           <Route path="/account/register" element={<Register />} />
-          <Route path='/shop' element={<Shop />} />
-          <Route path='/shop/product/:id' element={<ProductPage/>} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/shop/search/:categoryId" element={<Shop />} />
+          <Route path="/shop/product/:id" element={<ProductPage />} />
           <Route
             path="/profile"
             element={

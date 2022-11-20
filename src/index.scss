@@ -1,4 +1,5 @@
 :root {
+  --light-background-color:#f3f3f3;
   --color-grey-light: #e6e6e6;
   --color-grey-dark: #adadad;
   --color-black: #181818;
@@ -30,10 +31,16 @@ body {
   font-weight: 400;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+  background-color: var(--light-background-color);
 }
 body::-webkit-scrollbar {
   display: none;
 }
+    @media only screen and (max-width: 768px) {
+     html{
+      font-size: 72.5%;
+     } 
+    }
 //UTILITIES
 .--center-flex {
   display: flex !important;

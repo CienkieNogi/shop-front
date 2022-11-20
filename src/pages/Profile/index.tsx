@@ -1,14 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
-import { useAppDispatch } from "../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { useLogoutMutation } from "../../redux/features/Auth/authApi";
-import { logoutReducer } from "../Auth/authSlice";
+import { logoutReducer, selectLoggedCredentials } from "../Auth/authSlice";
 import "./index.scss";
 
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const {username,role} = useAppSelector(selectLoggedCredentials);
   const [logout,{isSuccess}]=useLogoutMutation()
   const isAdmin = localStorage.getItem('_role')?.replace(/"/g,'')
   const handleLogout = async() => {
@@ -26,8 +27,9 @@ const Profile = () => {
       <div className="profile__content">
         <h1 className="profile__content--header">My account</h1>
         <h3 className="profile__content--details">Username</h3>
-        <h3 className="profile__content--details">Email</h3>
+        <p>{username}</p>
         <h3 className="profile__content--details">Role</h3>
+        <p>{role}</p>
         {isAdmin === "ADMIN" && (
 
         <div className="profile__content--admin">

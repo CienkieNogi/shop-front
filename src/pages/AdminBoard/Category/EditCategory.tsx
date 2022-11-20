@@ -7,8 +7,8 @@ import {
   useEditCategoryMutation,
   useGetCategoryByIdQuery,
 } from "../../../redux/features/Category/categorySlice";
-import Spinner from "../../../utils/Spinner";
 import ErrorBox from "../ErrorBox";
+import Spinner from "../../../utils/Spinner";
 
 const EditCategory = () => {
   const { categoryId } = useParams();

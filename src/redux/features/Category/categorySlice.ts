@@ -46,25 +46,26 @@ export const categorySlice = api.injectEndpoints({
         method: "PATCH",
         body: { newTitle: body.title },
       }),
+      invalidatesTags:["Category"]
       //optimistic update
-      async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
-        console.log('OPTIMISTIC',id,patch);
-        const patchResult = dispatch(
-          categorySlice.util.updateQueryData(
-            "getCategoryById",
-            id!,
-            (draft) => {
-              console.log('INSIDE',draft);
-              Object.assign(draft, patch);
-            }
-          )
-        );
-        try {
-          await queryFulfilled;
-        } catch {
-          patchResult.undo();
-        }
-      },
+      // async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+      //   console.log('OPTIMISTIC',id,patch);
+      //   const patchResult = dispatch(
+      //     categorySlice.util.updateQueryData(
+      //       "getCategoryById",
+      //       id!,
+      //       (draft) => {
+      //         console.log('INSIDE',draft);
+      //         Object.assign(draft, patch);
+      //       }
+      //     )
+      //   );
+      //   try {
+      //     await queryFulfilled;
+      //   } catch {
+      //     patchResult.undo();
+      //   }
+      // },
     }),
     deleteCategory:builder.mutation<ServerResponse<{}>,Partial<CategoryI>>({
       query:({id})=>({

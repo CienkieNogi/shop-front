@@ -19,7 +19,6 @@ const EditProduct: React.FC<Props> = ({ product }) => {
   const pluRef = useRef<HTMLInputElement>(null);
   const unitRef = useRef<HTMLSelectElement>(null) ;
   
-
   const updateProduct=async(e:any)=>{
     e.preventDefault();
     await editProduct({

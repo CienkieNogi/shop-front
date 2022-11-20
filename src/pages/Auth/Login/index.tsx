@@ -16,6 +16,7 @@ const Login = () => {
       localStorage.setItem("ttl", JSON.stringify(data.ttl));
       localStorage.setItem("_id", JSON.stringify(data.id));
       localStorage.setItem("_role", JSON.stringify(data.role));
+      localStorage.setItem("_username", JSON.stringify(data.username));
     }
   }, [isSuccess, data]);
 

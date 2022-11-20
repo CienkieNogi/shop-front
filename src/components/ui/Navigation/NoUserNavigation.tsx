@@ -1,21 +1,17 @@
-import React from "react";
+import React from 'react'
 import { ReactComponent as ClientIcon } from "../../../assets/SVG/user.svg";
 import { ReactComponent as SearchIcon } from "../../../assets/SVG/magnifying-glass.svg";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./index.scss";
-import { useAppSelector } from "../../../redux/app/hooks";
-import { selectLoggedState } from "../../../pages/Auth/authSlice";
 import Cart from "./Cart";
-import { UseGetCart } from "../../../hooks/useCartHook";
-import { LINKS } from "../../../types";
 
-const Navigation = () => {
-  const islogged = useAppSelector(selectLoggedState);
-  const cartResults = UseGetCart();
-  const { items } = cartResults;
-
-
+const NoUserNavigation = () => {
+  enum LINKS {
+    LOGIN = "account/login",
+    PROFILE = "profile",
+    CART = "cart",
+  }
   return (
     <>
       <div className="top">
@@ -33,10 +29,10 @@ const Navigation = () => {
           <img src={logo} alt="" className="top__logo" />
         </Link>
         <div className="top__user-box">
-          <Link to={islogged ? LINKS.CART : LINKS.LOGIN}>
-            <Cart amountOfItems={items} />
+          <Link to={LINKS.LOGIN}>
+            <Cart amountOfItems={0} />
           </Link>
-          <Link to={islogged ? LINKS.PROFILE : LINKS.LOGIN}>
+          <Link to={ LINKS.LOGIN}>
             <div className="top__user-box--cart --center-flex">
               <ClientIcon />
             </div>
@@ -52,7 +48,7 @@ const Navigation = () => {
         </ul>
       </nav>
     </>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default NoUserNavigation

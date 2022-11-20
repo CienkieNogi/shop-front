@@ -3,7 +3,6 @@
   padding-top: 1rem;
 }
 
-
 .hero {
   height: 50rem;
   margin-bottom: var(--section-padding);
@@ -13,6 +12,13 @@
     background-size: cover;
     background-position: center;
   }
+    @media only screen and (max-width: 768px) {
+      &__bg{
+
+    background-position: left;
+      }
+
+    }
 }
 
 .collection {
@@ -20,8 +26,11 @@
   &__container {
     display: flex;
     padding: 0 1.5rem;
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 768px) {
       flex-direction: column;
+      margin: auto;
+      padding: 0;
+      width: 100%;
     }
   }
 
@@ -29,12 +38,14 @@
     height: 35rem;
     width: 100%;
     border-radius: 3px;
-    
-    &:not(:last-child){
+    position: relative;
+    &:not(:last-child) {
       margin-right: 2rem;
     }
+    &:hover &--section {
+      opacity: 1;
+    }
     &.item--1 {
-     
       background-image: url(../../assets/steak.jpg);
       background-size: cover;
     }
@@ -46,11 +57,67 @@
       background-image: url(../../assets/poultry.webp);
       background-size: cover;
     }
-   &.item--1:hover {
-  transform: scale(1.2);
-  }
-  }
 
+    @media only screen and (max-width: 1024px) {
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
+      &.item--1,
+      &.item--2,
+      &.item--3 {
+        background-size: cover;
+      }
+    }
+    &--maintitle {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      & p {
+        color: white;
+        font-weight: 600;
+        font-size: 2rem;
+        width: 100%;
+      }
+    }
+    &--section {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid white;
+      width: 50%;
+      min-width: 10rem;
+      padding: 1rem 2rem;
+      background-color: white;
+      opacity: 0;
+      transition: all 0.3s ease-in;
+      & p {
+        text-align: center;
+        color: var(--color-medium-black);
+        font-weight: 600;
+      }
+    }
+    &.item--1:hover,
+    &.item--2:hover,
+    &.item--3:hover {
+      background-size: 120%;
+      background-position-x: 50%;
+      background-position-y: 25%;
+      cursor: pointer;
+      // transform: scale(1.2);
+    }
+    @media only screen and (max-width: 768px) {
+      &--section p {
+        font-size: 2rem;
+      }
+      &--section {
+        opacity: 1;
+        width: 70%;
+      }
+    }
+  }
 }
 
 .reviews {
@@ -60,11 +127,11 @@
     display: flex;
     justify-content: center;
     margin-bottom: 1.5rem;
-     
-  &>*{
-    height: 1.25rem;
-    width: 1.25rem;
-  } 
+
+    & > * {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
   }
   &__single {
     &:not(:last-child) {
@@ -73,5 +140,57 @@
     & p {
       text-align: center;
     }
+  }
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    &__single {
+      padding-right: 0 !important;
+      padding-bottom: 2rem;
+    }
+    & p {
+      padding: 0 4rem;
+    }
+  }
+}
+
+.footer {
+  height: 20rem;
+  background-color: var(--color-secondary);
+  color: white;
+  width: 100%;
+  display: flex;
+  padding: 3rem 4rem;
+  justify-content: space-around;
+  &__info {
+    &--section {
+      display: flex;
+      margin-bottom: 2rem;
+      cursor: pointer;
+      & a {
+        text-decoration: none;
+        color: white;
+      }
+      & svg {
+        margin-right: 1rem;
+        fill: white;
+      }
+    }
+  }
+
+  &__menu {
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  @media only screen and (max-width: 768px) {
+    &{
+      flex-direction: column;
+      min-height: 30rem;
+      align-items: center;
+    }
+
   }
 }

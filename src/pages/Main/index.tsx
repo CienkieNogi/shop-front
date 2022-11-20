@@ -1,6 +1,9 @@
 import React from "react";
 import "./index.scss";
 import { ReactComponent as Star } from "../../assets/SVG/star.svg";
+import Footer from "./Footer";
+import MainSection from "./MainSection";
+
 const Main = () => {
   return (
     <div>
@@ -10,9 +13,21 @@ const Main = () => {
         </div>
         <div className="collection">
           <div className="collection__container">
-            <div className="collection__item item--1"></div>
-            <div className="collection__item item--2"></div>
-            <div className="collection__item item--3"></div>
+            <MainSection
+              mainTitle="Tender Steaks"
+              sectionClassNumber="item--1"
+              category="Beef"
+            />
+            <MainSection
+              mainTitle="Fresh Pork"
+              sectionClassNumber="item--2"
+              category="Pork"
+            />
+            <MainSection
+              mainTitle="Local Chicken"
+              sectionClassNumber="item--3"
+              category="Poultry"
+            />
           </div>
         </div>
         <div className="reviews">
@@ -59,9 +74,7 @@ const Main = () => {
             </p>
           </div>
         </div>
-        <footer className="footer">
-
-        </footer>
+        <Footer />
       </div>
     </div>
   );

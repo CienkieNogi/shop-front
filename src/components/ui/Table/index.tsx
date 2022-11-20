@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductI } from "../../../types";
+import { ProductI, UnitI } from "../../../types";
 import "./index.scss";
 type Props = {
   result: ProductI[] | undefined;
@@ -14,7 +14,6 @@ const Table: React.FC<Props> = ({
   actionOnPageSelect,
 actionOnCellSelect
 }) => {
-  console.log("@@@", numberOfPages);
   //@ts-ignore
   const newArray = Array(Math.ceil(numberOfPages)).fill();
   console.log({ newArray });
@@ -31,7 +30,7 @@ actionOnCellSelect
             <div key={el.id} className="table__row" onClick={actionOnCellSelect?()=> actionOnCellSelect(el.id):()=>{}} >
               <div className="table__row--attribute">{el.name}</div>
               <div className="table__row--attribute">{el.plu}</div>
-              <div className="table__row--attribute">{el.price}</div>
+              <div className="table__row--attribute">{el.price} {el.unit===UnitI.gram?'zł/kg':'szt'}</div>
             </div>
           ))}
       </div>
