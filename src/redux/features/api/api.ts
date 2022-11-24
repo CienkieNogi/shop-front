@@ -18,7 +18,7 @@ FetchBaseQueryError
     if(result?.error?.data?.error==='Unauthorized'){
         console.log("ERROR: " + result.error);
         localStorage.clear()
-        window.location.href = 'https://loquacious-pegasus-3bb988.netlify.app/account/login'
+        window.location.href = 'http://localhost:3000/account/login'
     }
     //@ts-ignore
     if(result?.error?.data?.error==='Access token is required'){
