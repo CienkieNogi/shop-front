@@ -1,10 +1,8 @@
 import React, { useRef, useState } from "react";
 import Button from "../../../components/ui/Button";
-import axios from 'axios'
+import axios from "axios";
 import { useGetAllCategoriesQuery } from "../../../redux/features/Category/categorySlice";
-import {
-  useCreateProductMutation,
-} from "../../../redux/features/Products/productSlice";
+import { useCreateProductMutation } from "../../../redux/features/Products/productSlice";
 import { UnitI } from "../../../types";
 import Spinner from "../../../utils/Spinner";
 import ErrorBox from "../ErrorBox";
@@ -22,32 +20,30 @@ const CreateProduct = () => {
   //@ts-ignore
   const handleCreateProduct = async (e: any) => {
     e.preventDefault();
-  const res=imageSelected.length>0? await uploadImage():{data:{url:''}}
-
- console.log({res,imageSelected}) 
-
+    const res = imageSelected ? await uploadImage() : { data: { url: "" } };
     await createProduct({
       name: nameRef.current?.value,
       price: Number(priceRef.current?.value),
       plu: Number(pluRef.current?.value),
       unit: unitRef.current?.value as UnitI,
       categoryId: categoryRef.current?.value,
-      photo:res?.data.url
+      photo: res?.data.url,
     });
   };
 
-  const uploadImage= async () => {
+  const uploadImage = async () => {
     try {
-      
-    const formData = new FormData();
-    formData.append("file", imageSelected);
-    formData.append("upload_preset", "e4sk9tpt");
-   console.log({formData}) 
-   return axios.post('https://api.cloudinary.com/v1_1/nedzny/image/upload',formData) 
+      const formData = new FormData();
+      formData.append("file", imageSelected);
+      formData.append("upload_preset", "e4sk9tpt");
+      console.log({ formData });
+      return axios.post(
+        "https://api.cloudinary.com/v1_1/nedzny/image/upload",
+        formData
+      );
     } catch (error) {
-     console.log(error);
+      console.log(error);
     }
-  
   };
 
   const handleChange = (e: any) => {
