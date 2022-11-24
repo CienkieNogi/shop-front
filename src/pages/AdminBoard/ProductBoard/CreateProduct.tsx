@@ -23,7 +23,9 @@ const CreateProduct = () => {
   const handleCreateProduct = async (e: any) => {
     e.preventDefault();
   const res=imageSelected.length>0? await uploadImage():{data:{url:''}}
- console.log('image selected',res,imageSelected) 
+
+ console.log({res,imageSelected}) 
+
     await createProduct({
       name: nameRef.current?.value,
       price: Number(priceRef.current?.value),
@@ -33,13 +35,14 @@ const CreateProduct = () => {
       photo:res?.data.url
     });
   };
+
   const uploadImage= async () => {
     try {
       
     const formData = new FormData();
     formData.append("file", imageSelected);
     formData.append("upload_preset", "e4sk9tpt");
-
+   console.log({formData}) 
    return axios.post('https://api.cloudinary.com/v1_1/nedzny/image/upload',formData) 
     } catch (error) {
      console.log(error);
