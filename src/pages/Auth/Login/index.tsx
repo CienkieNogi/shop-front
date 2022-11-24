@@ -49,7 +49,7 @@ const Login = () => {
       await loginUser({ email: input.email, password: input.password })
 
       //TODO: is it the best solution?
-      window.location.href="http://localhost:3000/"
+      window.location.href="https://loquacious-pegasus-3bb988.netlify.app"
     } catch (err) {
       //@ts-ignore
       setErrorMsg(error?.data.error);
