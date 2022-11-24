@@ -23,7 +23,7 @@ const CreateProduct = () => {
   const handleCreateProduct = async (e: any) => {
     e.preventDefault();
   const res=imageSelected.length>0? await uploadImage():{data:{url:''}}
-  
+ console.log('image selected',res,imageSelected) 
     await createProduct({
       name: nameRef.current?.value,
       price: Number(priceRef.current?.value),
