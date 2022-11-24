@@ -1,7 +1,8 @@
 import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-        baseUrl: 'http://localhost:4000/',
+        //baseUrl: 'http://localhost:4000/',
+    baseUrl:'https://shop-production-a4ae.up.railway.app/',
         credentials:'include',
         mode:"cors"
     })

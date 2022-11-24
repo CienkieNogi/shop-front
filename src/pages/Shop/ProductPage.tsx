@@ -11,10 +11,10 @@ import SuggestedProduct from "./SuggestedProduct";
 const ProductPage = () => {
   const { id } = useParams();
   const { data, isLoading, isFetching } = useGetProductByIdQuery(id as string);
-console.log(data?.id)
+  console.log(data?.id);
   const [addToCart] = useAddToCartMutation();
   const pricePerUnit = data?.unit === "gram" ? "zł/kg" : "zł/szt.";
-  if (isLoading ) {
+  if (isLoading) {
     return <Spinner />;
   }
   return (
@@ -42,7 +42,7 @@ console.log(data?.id)
           </div>
         </div>
       </div>
-      <SuggestedProduct productId={id!}  categoryId={data?.categoryId}/>
+      <SuggestedProduct productId={id!} categoryId={data?.categoryId} />
     </div>
   );
 };

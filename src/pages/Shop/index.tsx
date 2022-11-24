@@ -16,7 +16,7 @@ const Shop = () => {
   
   const {data:categories}=useGetAllCategoriesQuery()
   return (
-    <div className="shop --padding-hor-4">
+    <div className="shop ">
       <ShopHeader count={data?.data.count} categories={categories}/>
       <ShopBody data={data} isLoading={isLoading} />
     </div>

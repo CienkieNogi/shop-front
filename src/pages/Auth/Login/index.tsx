@@ -10,7 +10,7 @@ const Login = () => {
   const [loginUser, { data, isError, error, isLoading, isSuccess }] =
     useLoginUserMutation();
   const [errorMsg, setErrorMsg] = useState("");
-  const navigate = useNavigate();
+
   useEffect(() => {
     if (isSuccess && data) {
       localStorage.setItem("ttl", JSON.stringify(data.ttl));
@@ -56,9 +56,11 @@ const Login = () => {
     }
   };
 
+  if(isLoading){
+    return (<Spinner/>)
+  }
   return (
     <div className="auth --center-flex">
-      {isLoading && <Spinner />}
       <form className="auth__container" onSubmit={submit}>
         <div className="auth__section">
           <h1 className="auth__header">Login</h1>

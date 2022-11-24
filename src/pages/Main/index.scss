@@ -12,13 +12,11 @@
     background-size: cover;
     background-position: center;
   }
-    @media only screen and (max-width: 768px) {
-      &__bg{
-
-    background-position: left;
-      }
-
+  @media only screen and (max-width: 768px) {
+    &__bg {
+      background-position: left;
     }
+  }
 }
 
 .collection {
@@ -162,6 +160,7 @@
   padding: 3rem 4rem;
   justify-content: space-around;
   &__info {
+    min-width: 20rem;
     &--section {
       display: flex;
       margin-bottom: 2rem;
@@ -178,6 +177,7 @@
   }
 
   &__menu {
+    min-width: 20rem;
   }
 
   &__title {
@@ -186,11 +186,18 @@
     margin-bottom: 1.5rem;
   }
   @media only screen and (max-width: 768px) {
-    &{
+    & {
       flex-direction: column;
       min-height: 30rem;
       align-items: center;
+      justify-content: center;
+      &>*{
+      text-align: center;
+      }
+      &__info--section{
+      display: flex;
+      justify-content: center;
+      }
     }
-
   }
 }
