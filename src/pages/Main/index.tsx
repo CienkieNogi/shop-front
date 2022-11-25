@@ -40,10 +40,11 @@ const Main = () => {
               <Star />
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+              " Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
               perferendis harum vitae excepturi repellendus iste beatae modi.
-              Ex, quo quisquam!
+              Ex, quo quisquam! "
             </p>
+            <p className="reviews__author">Jim L</p>
           </div>
           <div className="reviews__single">
             <div className="reviews__star">
@@ -54,10 +55,11 @@ const Main = () => {
               <Star />
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+              " Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
               perferendis harum vitae excepturi repellendus iste beatae modi.
-              Ex, quo quisquam!
+              Ex, quo quisquam! "
             </p>
+            <p className="reviews__author">Dorothy W.</p>
           </div>
           <div className="reviews__single">
             <div className="reviews__star">
@@ -68,10 +70,11 @@ const Main = () => {
               <Star />
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+              " Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
               perferendis harum vitae excepturi repellendus iste beatae modi.
-              Ex, quo quisquam!
+              Ex, quo quisquam! "
             </p>
+            <p className="reviews__author">Arthur K.</p>
           </div>
         </div>
         <Footer />

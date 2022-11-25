@@ -27,7 +27,7 @@
       }
     }
     &--select {
-        min-width: 15rem;
+      min-width: 15rem;
       & option {
         font-size: 1.6rem;
       }
@@ -68,13 +68,11 @@
   }
 
   &__body {
-    // height: 100%;
     width: 100%;
     display: inline-flex;
     margin-left: auto;
     padding: 0 4rem;
     flex-wrap: wrap;
-    // justify-content: space-around;
     justify-content: center;
     align-items: center;
     & > div {
@@ -82,9 +80,12 @@
       margin-block: 5rem;
     }
     &--product {
-      min-width: 20rem;
-      height: 30rem;
+      max-width: 15rem;
+      // height: 30rem;
       border: 1px solid transparent;
+      background-color: var(--color-grey-light);
+            padding-bottom: 2rem;
+            border-radius: 1rem;
       &-img {
         height: 18rem;
         // object-fit: cover;
@@ -93,6 +94,7 @@
           max-width: 20rem;
           height: 100%;
           object-fit: cover;
+          border-radius: 1rem 1rem 0 0;  
         }
       }
       &-content {
@@ -107,27 +109,44 @@
       &-price {
         font-size: 1.5rem;
       }
+    }
+    @media only screen and (min-width: 769px) {
+      &--product {
 
-      &:hover {
-        border: 1px solid var(--color-grey-light);
-        box-shadow: 0.1rem 0.2rem 0 var(--color-grey-light);
-        border-radius: 0.6rem 0.6rem;
-        cursor: pointer;
-      }
-      &:hover img {
-        border-radius: 0.6rem 0.6rem 0 0;
+        &:hover {
+          border: 1px solid var(--color-grey-light);
+          box-shadow: 0.1rem 0.2rem 0 var(--color-grey-light);
+          border-radius: 0.6rem 0.6rem;
+          cursor: pointer;
+        }
+        &:hover img {
+          border-radius: 0.6rem 0.6rem 0 0;
+        }
       }
     }
     @media only screen and (max-width: 768px) {
       & {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         &--product {
-          min-width: 10rem;
-          height: 15rem;
+                justify-self: center;
+          // min-width: 10rem;
+          // height: 19rem;
+          &-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+          }
           &-img {
             height: 10rem;
             width: 10rem;
           }
         }
+      }
+    }
+
+    @media only screen and (max-width: 475px) {
+      & {
+        grid-template-columns: 1fr 1fr;
       }
     }
   }

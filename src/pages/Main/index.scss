@@ -137,8 +137,15 @@
     }
     & p {
       text-align: center;
+    font-style: italic;
+            line-height: 2.5rem;
     }
   }
+   &__author{
+        font-weight: 600;
+        font-size: 1.5rem;
+        font-style: normal !important;
+    }
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     &__single {
@@ -191,12 +198,12 @@
       min-height: 30rem;
       align-items: center;
       justify-content: center;
-      &>*{
-      text-align: center;
+      & > * {
+        text-align: center;
       }
-      &__info--section{
-      display: flex;
-      justify-content: center;
+      &__info--section {
+        display: flex;
+        justify-content: center;
       }
     }
   }
