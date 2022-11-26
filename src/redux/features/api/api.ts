@@ -2,7 +2,7 @@ import { BaseQueryFn, createApi, FetchArgs, fetchBaseQuery, FetchBaseQueryError 
 
 const baseQuery = fetchBaseQuery({
         // baseUrl: 'http://localhost:4000/',
-    baseUrl:'https://shop-production-a4ae.up.railway.app/',
+    baseUrl:process.env.REACT_APP_SERVER_URL || 'http://localhost:4000',
         credentials:'include',
         mode:"cors"
     })
