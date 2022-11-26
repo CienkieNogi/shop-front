@@ -75,8 +75,9 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10rem;
     & > div {
-      margin-inline: 1em;
+      margin-inline: 2em;
       margin-block: 5rem;
     }
     &--product {
@@ -89,6 +90,9 @@
       padding-bottom: 2rem;
       border-radius: 1rem;
       overflow: hidden;
+            &:hover{
+                cursor: pointer;
+            }
       &-img {
         width: 100%;
         min-height: 14.5rem;
@@ -144,6 +148,7 @@
         grid-template-columns: 1fr 1fr 1fr;
         &--product {
           justify-self: center;
+            margin-block: 2rem !important;
           &-name {
             font-size: 1.5rem;
           }
@@ -205,6 +210,9 @@
   }
   @media only screen and (max-width: 464px) {
     padding: 0;
+        &__paragraph, &__paragraph--text{
+            padding-inline: 2rem;
+        }
         &__title{
             padding: 0 1rem;
         }
@@ -238,11 +246,19 @@
     width: 100%;
   }
   @media only screen and (max-width: 464px) {
+        &-input{
+            // display: flex;
+            // justify-content: space-evenly;
+            padding: 0 2rem;
+        }
     & select,
     &-input input {
       width: 10rem;
       height: 4rem;
     }
+        & select{
+            outline: none;
+        }
   }
 }
 

@@ -13,6 +13,7 @@
     background-position: center;
   }
   @media only screen and (max-width: 768px) {
+        height: 40rem;
     &__bg {
       background-position: left;
     }

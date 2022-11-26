@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../redux/features/Category/categorySlice";
 import { useGetProductsQuery } from "../../redux/features/Products/productSlice";
+import Footer from "../Main/Footer";
 import "./index.scss";
 import ShopBody from "./ShopBody";
 import ShopHeader from "./ShopHeader";
@@ -19,6 +20,7 @@ const Shop = () => {
     <div className="shop ">
       <ShopHeader count={data?.data.count} categories={categories}/>
       <ShopBody data={data} isLoading={isLoading} />
+            <Footer/>
     </div>
   );
 };

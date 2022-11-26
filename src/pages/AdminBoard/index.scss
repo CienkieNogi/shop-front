@@ -1,22 +1,28 @@
 .adminboard {
-
+  // min-height: calc(100vh - 9rem - 7.2rem);
+  &__container {
+    margin-top: 2rem;
+    width: 50%;
+    background-color: white;
+    border: 1px solid var(--color-grey-dark);
+    border-radius: 5px;
+  }
   &--paragraph {
     font-size: 1.4rem;
 
-    &--small{
+    &--small {
       font-size: 1.2rem;
     }
   }
 
-  
   &__menu {
     padding: 2rem 3rem;
     // min-width: 35.5rem;
-    min-width:45rem;
-    &--box{
+    min-width: 20rem;
+    &--box {
       border: 1px solid var(--color-medium-black);
       box-shadow: 0 1.3rem 2.1rem -1.2rem var(--color-medium-black);
-  position: relative;
+      position: relative;
     }
     &--error {
       border: 1px solid red;
@@ -32,7 +38,7 @@
       &:not(:last-child) {
         margin-bottom: 3rem;
       }
-    
+
       &-input form {
         display: flex;
         flex-direction: column;
@@ -81,12 +87,18 @@
     }
   }
   &--title {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     font-weight: 400;
     font-size: 2.5rem;
     text-transform: uppercase;
+    text-align: center;
     padding: 0 2.7rem;
     margin-bottom: 3rem;
     border-bottom: 1px solid var(--color-grey-dark);
+        &>p{
+        }
   }
   &--icon-container {
     display: flex;
@@ -115,7 +127,7 @@
     display: flex;
     width: 32rem;
     padding: 0 3rem;
-
+    margin-top: 2rem;
     &--item {
       width: 100%;
       display: inline-block;
@@ -130,10 +142,36 @@
 
       &.--nav-active {
         border-color: var(--color-medium-black);
+        background-color: var(--color-grey-light);
       }
     }
   }
- 
+    &--back:hover{
+    cursor: pointer;
+    }
+  @media only screen and (max-width: 768px) {
+    &__nav {
+      flex-direction: column;
+      width: 100%;
+      padding: 0;
+      margin-top: 0;
+      &--item {
+        border-inline: none;
+      }
+    }
+  }
+  @media only screen and (max-width: 464px) {
+    &__container {
+      width: 100%;
+      border-radius: 0;
+    }
+    &--title {
+      font-size: 2rem;
+    }
+        &__menu{
+            width: 100%;
+        }
+  }
 }
 .custom-select {
   position: relative;
@@ -154,28 +192,26 @@
   fill: var(--color-secondary);
   transform: scale(1.2);
 }
-.product{
-
-  &__input{
+.product {
+  &__input {
     border: 1px solid var(--color-grey-dark);
     border-top: none;
     text-align: center;
     width: 100%;
-    padding: .5rem 0;
+    padding: 0.5rem 0;
 
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
-  &__select{
+  &__select {
     width: 100%;
     outline: none;
     text-align: center;
     padding: 1rem 0;
     background-color: white;
-    &--no-top{
-    border-top: none;
+    &--no-top {
+      border-top: none;
     }
-     
   }
 }

@@ -24,6 +24,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+    height: 100vh;
 }
 
 body {
@@ -46,6 +47,14 @@ body::-webkit-scrollbar {
         font-size: 82.5%;
       }
     }
+#root{
+
+    // height: calc(100vh - 9rem - 7.2rem);
+}
+.App{
+    // height: calc(100vh - 9rem - 7.2rem);
+    // height: 100%;
+}
 //UTILITIES
 .--center-flex {
   display: flex !important;

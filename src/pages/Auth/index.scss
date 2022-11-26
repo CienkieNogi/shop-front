@@ -1,12 +1,13 @@
 .auth {
+  display: flex;
+  min-height: calc(100vh - 9rem - 7.2rem);
   &__container {
-    flex: 0 0 30%;
+    width: 30rem;
   }
 
   &__header {
     font-size: 3.5rem;
     margin: 2rem 0;
-
   }
 
   &__section {
@@ -38,13 +39,25 @@
       }
     }
 
-    &--error{
+    &--error {
       border: 1px solid red;
       height: 2.7rem;
       display: flex;
       align-items: center;
       padding-left: 1rem;
       color: red;
+    }
+  }
+  @media only screen and (max-width: 464px) {
+    & {
+      &__container {
+        flex: none;
+        width: 100%;
+        padding: 0 2rem;
+      }
+      &__section input {
+        padding: 1rem 2rem;
+      }
     }
   }
 }

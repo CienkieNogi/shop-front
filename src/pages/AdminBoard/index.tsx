@@ -12,6 +12,8 @@ const AdminBoard = () => {
   });
   return (
     <div className="adminboard adminboard--column --center-flex">
+            <div className="adminboard__container">
+
       <div className="adminboard__nav">
         <div
           onClick={() => setOpen({ first: true, second: false })}
@@ -32,6 +34,7 @@ const AdminBoard = () => {
       </div>
       {open.first && <Category />}
       {open.second && <ProductBoard />}
+            </div>
     </div>
   );
 };
