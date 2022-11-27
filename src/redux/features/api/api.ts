@@ -19,7 +19,7 @@ FetchBaseQueryError
         console.log("ERROR: " + result.error);
         localStorage.clear()
         // window.location.href = 'http://localhost:3000/account/login'
-        window.location.href='https://shop-production-a4ae.up.railway.app/'
+        window.location.href=`${process.env.REACT_APP_SERVER_URL || 'http://localhost:3000'}`
     }
     //@ts-ignore
     if(result?.error?.data?.error==='Access token is required'){

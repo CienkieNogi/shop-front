@@ -4,13 +4,19 @@ import Button from "../../components/ui/Button";
 type Props = {
   id: string;
   addToCart?: any;
+  setAddedToCart?: any;
 };
 
-export const AmountButton: React.FC<Props> = ({ addToCart, id }) => {
+export const AmountButton: React.FC<Props> = ({ addToCart, id ,setAddedToCart}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const add = async (e: any) => {
     e.preventDefault();
-    await addToCart({ id, amount: Number(inputRef.current?.value) });
+        try {
+            await addToCart({ id, amount: Number(inputRef.current?.value) });
+            setAddedToCart(true)
+        } catch (error) {
+        console.log(error)        
+        }
   };
   return (
     <form className="quantity-button" onSubmit={add}>
@@ -24,16 +30,21 @@ export const AmountButton: React.FC<Props> = ({ addToCart, id }) => {
   );
 };
 
-export const Select: React.FC<Props> = ({ addToCart, id }) => {
+export const Select: React.FC<Props> = ({ addToCart, setAddedToCart, id }) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const add = async (e: any) => {
     e.preventDefault();
-    await addToCart({
-      id,
-      amount: Number(selectRef.current?.value),
-      multiplier: Number(inputRef.current?.value),
-    });
+    try {
+      await addToCart({
+        id,
+        amount: Number(selectRef.current?.value),
+        multiplier: Number(inputRef.current?.value),
+      });
+      setAddedToCart(true);
+    } catch (error) {
+            console.log(error)
+        }
   };
   return (
     <form className="quantity-button" onSubmit={add}>

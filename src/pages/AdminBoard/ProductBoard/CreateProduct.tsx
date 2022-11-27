@@ -35,10 +35,10 @@ const CreateProduct = () => {
     try {
       const formData = new FormData();
       formData.append("file", imageSelected);
-      formData.append("upload_preset", "e4sk9tpt");
+      formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_PRESET as string);
       console.log({ formData });
       return axios.post(
-        "https://api.cloudinary.com/v1_1/nedzny/image/upload",
+        process.env.REACT_APP_CLOUDINARY_URL as string,
         formData
       );
     } catch (error) {

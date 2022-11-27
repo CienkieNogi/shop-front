@@ -13,14 +13,25 @@ const SuggestedProduct: React.FC<TProps> = ({ categoryId, productId }) => {
   const navigate = useNavigate();
   const [prodId, setProdId] = useState("");
   //array with diffrent products than main product
-
   let prodArray: ProductI[] = [];
+  let finalArr: ProductI[] = [];
   data?.data.filter((el) => {
     if (el.id !== productId) {
       prodArray.push(el);
     }
     return prodArray;
   });
+
+    //We choose only 3 products for suggestions or less
+  if (prodArray.length >= 3) {
+    for (let i = 0; i < 3; i++) {
+      var random_int = Math.round(Math.random() * (prodArray.length - 1));
+      finalArr.push(prodArray[random_int]);
+      prodArray.splice(random_int, 1);
+    }
+  } else {
+    finalArr = [...prodArray];
+  }
 
   useEffect(() => {
     getSuggestedProducts({ category: categoryId! });
@@ -35,7 +46,7 @@ const SuggestedProduct: React.FC<TProps> = ({ categoryId, productId }) => {
     <div className="suggested">
       <p className="suggested--title">You may also like</p>
       <div className="suggested__container">
-        {prodArray.map((el) => (
+        {finalArr.map((el) => (
           <div
             onClick={() => handleClick(el.id)}
             key={el.id}
