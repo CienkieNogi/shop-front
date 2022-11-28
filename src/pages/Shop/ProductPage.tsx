@@ -29,7 +29,7 @@ useOnClickOutside(ref,()=>setAddedToCart(false))
                         {addedToCart && (
                 <div >
 
-                <SuccesPopup ref={ref}/>
+                <SuccesPopup setAddedToCart={setAddedToCart} ref={ref}/>
                 </div>
             )}
       <div className="product --padding-hor-4 ">
