@@ -19,7 +19,7 @@ const Login = () => {
       localStorage.setItem("_username", JSON.stringify(data.username));
     //if login is succesful then redirect user to main
       window.location.href = `${
-        process.env.REACT_APP_SERVER_URL || "http://localhost:3000/"
+        process.env.REACT_APP_HOST_URL || "http://localhost:3000/"
       }`;
     }
   }, [isSuccess, data]);
