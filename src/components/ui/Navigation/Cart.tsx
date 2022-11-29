@@ -9,7 +9,7 @@ const Cart: React.FC<Props> = ({ amountOfItems }) => {
     <div className="top__user-box--profile --center-flex">
       <CartIcon className="top__user-box--icon" />
       {amountOfItems! > 0 && (
-        <div className="top__user-box--badge">
+        <div className={`top__user-box--badge${amountOfItems!>10?'--bigger':''}`}>
           <p>{amountOfItems}</p>
         </div>
       )}

@@ -5,15 +5,17 @@ type Props = {
   id: string;
   addToCart?: any;
   setAddedToCart?: any;
+    scrollTo:any;
 };
 
-export const AmountButton: React.FC<Props> = ({ addToCart, id ,setAddedToCart}) => {
+export const AmountButton: React.FC<Props> = ({ addToCart, id ,setAddedToCart,scrollTo}) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const add = async (e: any) => {
     e.preventDefault();
         try {
             await addToCart({ id, amount: Number(inputRef.current?.value) });
             setAddedToCart(true)
+            scrollTo()
         } catch (error) {
         console.log(error)        
         }
@@ -30,7 +32,7 @@ export const AmountButton: React.FC<Props> = ({ addToCart, id ,setAddedToCart}) 
   );
 };
 
-export const Select: React.FC<Props> = ({ addToCart, setAddedToCart, id }) => {
+export const Select: React.FC<Props> = ({ addToCart, setAddedToCart, id ,scrollTo}) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const add = async (e: any) => {
@@ -42,6 +44,7 @@ export const Select: React.FC<Props> = ({ addToCart, setAddedToCart, id }) => {
         multiplier: Number(inputRef.current?.value),
       });
       setAddedToCart(true);
+            scrollTo()
     } catch (error) {
             console.log(error)
         }

@@ -15,17 +15,18 @@ const ProductPage = () => {
   const { id } = useParams();
   const { data, isLoading, isFetching } = useGetProductByIdQuery(id as string);
   const [addToCart,{isLoading:addProductLoading}] = useAddToCartMutation();
-// const ref=useRef<any>()
     const ref= React.createRef()
 useOnClickOutside(ref,()=>setAddedToCart(false))
 
   const pricePerUnit = data?.unit === "gram" ? "zł/kg" : "zł/szt.";
- 
+ const scrollToPoint=()=>{
+        window.scrollTo(0,0)
+    } 
   if (isLoading) {
     return <Spinner />;
   }
   return (
-    <div className="product-container product__anchor">
+    <div   className="product-container product__anchor">
                         {addedToCart && (
                 <div >
 
@@ -52,12 +53,14 @@ useOnClickOutside(ref,()=>setAddedToCart(false))
                 setAddedToCart={setAddedToCart}
                 addToCart={addToCart}
                 id={id!}
+                scrollTo={scrollToPoint}
               />
             ) : (
               <AmountButton
                 setAddedToCart={setAddedToCart}
                 addToCart={addToCart}
                 id={id!}
+                scrollTo={scrollToPoint}
               />
             )}
             <div className="product__info--description">
