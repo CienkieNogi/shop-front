@@ -1,14 +1,12 @@
-import React from "react";
-import { ReactComponent as ClientIcon } from "../../../assets/SVG/user.svg";
-import { ReactComponent as SearchIcon } from "../../../assets/SVG/magnifying-glass.svg";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import "./index.scss";
-import { useAppSelector } from "../../../redux/app/hooks";
-import { selectLoggedState } from "../../../pages/Auth/authSlice";
-import Cart from "./Cart";
+import { ReactComponent as ClientIcon } from "../../../assets/SVG/user.svg";
 import { UseGetCart } from "../../../hooks/useCartHook";
+import { selectLoggedState } from "../../../pages/Auth/authSlice";
+import { useAppSelector } from "../../../redux/app/hooks";
 import { LINKS } from "../../../types";
+import Cart from "./Cart";
+import "./index.scss";
 
 const Navigation = () => {
   const islogged = useAppSelector(selectLoggedState);
@@ -20,14 +18,6 @@ const Navigation = () => {
     <>
       <div className="top">
         <div className="top__search-box">
-          {/* <input
-            type="text"
-            className="top__search-box--input"
-            placeholder="Search"
-          /> */}
-          {/* <div className="top__search-box--icon --center-flex">
-            <SearchIcon />
-          </div> */}
         </div>
         <Link to="/">
           <img src={logo} alt="" className="top__logo" />

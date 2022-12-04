@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "../../../components/ui/Button";
 import { useLoginUserMutation } from "../../../redux/features/Auth/authApi";
-import { LoginUserInput } from "../../../types";
 import Spinner from "../../../utils/Spinner";
 import "../index.scss";
 

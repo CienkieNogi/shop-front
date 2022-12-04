@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import Button from "../../../components/ui/Button";
 import axios from "axios";
+import { useRef, useState } from "react";
+import Button from "../../../components/ui/Button";
 import { useGetAllCategoriesQuery } from "../../../redux/features/Category/categorySlice";
 import { useCreateProductMutation } from "../../../redux/features/Products/productSlice";
 import { UnitI } from "../../../types";
@@ -9,14 +9,18 @@ import ErrorBox from "../ErrorBox";
 
 const CreateProduct = () => {
   const [imageSelected, setImageSelected] = useState<string>("");
+
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
   const pluRef = useRef<HTMLInputElement>(null);
   const unitRef = useRef<HTMLSelectElement>(null);
   const categoryRef = useRef<HTMLSelectElement>(null);
+
   const { data, isSuccess } = useGetAllCategoriesQuery();
+
   const [createProduct, { isError: isProductError, error, isLoading }] =
     useCreateProductMutation();
+    
   //@ts-ignore
   const handleCreateProduct = async (e: any) => {
     e.preventDefault();

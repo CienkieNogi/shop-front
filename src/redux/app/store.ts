@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
+import countReducer from '../../components/ui/Navigation/cartCountSlice';
+import authReducer from "../../pages/Auth/authSlice";
 import { api } from "../features/api/api";
-import authReducer from "../../pages/Auth/authSlice"
-import countReducer from '../../components/ui/Navigation/cartCountSlice'
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice

@@ -4,6 +4,7 @@
   margin: auto;
   max-width: 50rem;
   &__header {
+    margin-top: 1rem;
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -79,9 +80,13 @@
         background-color: var(--color-grey-light);
       }
     }
-    &.--center-flex p{
+    &.--center-flex p {
       font-weight: 600;
       font-size: 2.1rem;
     }
+  }
+  &__checkout {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
   }
 }

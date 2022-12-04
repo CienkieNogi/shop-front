@@ -67,7 +67,6 @@ export interface ProductI {
   categoryId: string;
   category: CategoryI;
   photo?: string;
-  // singleOrder
 }
 
 export interface CategoryI {
@@ -81,6 +80,31 @@ export enum UnitI {
   pcs = "pcs",
 }
 
+export type CartNav ={
+  amountOfItems?: number;
+}
+
+export type QuantityButtonT={
+  id: string;
+  addToCart?: any;
+  setAddedToCart?: any;
+    scrollTo:any;
+}
+
+export type ShopBodyT={
+  data: ServerResponseWithCount<ProductI[]> | undefined;
+  isLoading: boolean;
+}
+
+export type ShopHeaderT={
+  count?: number;
+  categories?: CategoryI[];
+}
+
+export type SuggestedProductT={
+  categoryId: string | undefined;
+  productId: string;
+}
   export enum LINKS {
     LOGIN = "account/login",
     PROFILE = "profile",

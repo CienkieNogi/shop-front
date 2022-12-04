@@ -1,14 +1,15 @@
-import Login from "./Auth/Login";
-import Register from "./Auth/Register";
-import Main from "./Main";
-import Profile from "./Profile";
+import AboutUs from "./AboutUs";
 import AdminBoard from "./AdminBoard";
 import EditCategory from "./AdminBoard/Category/EditCategory";
-import Shop from "./Shop";
 import Product from "./AdminBoard/ProductBoard/Product";
-import ProductPage from "./Shop/ProductPage";
+import { SuccessPayment } from "./AfterPayment";
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
 import Cart from "./Cart";
-import AboutUs from "./AboutUs";
+import Main from "./Main";
+import Profile from "./Profile";
+import Shop from "./Shop";
+import ProductPage from "./Shop/ProductPage";
 export {
     Login,
     Register,
@@ -20,5 +21,7 @@ export {
     Product,
     ProductPage,
     Cart,
-    AboutUs
-}
+    AboutUs,
+    SuccessPayment
+};
+

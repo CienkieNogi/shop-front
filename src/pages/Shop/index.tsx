@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetAllCategoriesQuery } from "../../redux/features/Category/categorySlice";
 import { useGetProductsQuery } from "../../redux/features/Products/productSlice";
@@ -9,11 +8,10 @@ import ShopHeader from "./ShopHeader";
 
 const Shop = () => {
   const param = useParams();
-  const { data, isSuccess, isLoading } = useGetProductsQuery(
+  const { data, isLoading } = useGetProductsQuery(
     //check if we have any params, if not then show all products
     Object.keys(param).length ? (param.categoryId as string) : ""
   );
-  const [select, setSelect] = useState('')
   
   const {data:categories}=useGetAllCategoriesQuery()
   return (

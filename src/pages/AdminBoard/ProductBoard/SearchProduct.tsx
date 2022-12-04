@@ -1,20 +1,23 @@
-import React, { useRef, useState } from "react";
-import Button from "../../../components/ui/Button";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowLeft } from "../../../assets/SVG/arrow-bold-left.svg";
 import { ReactComponent as ArrowRight } from "../../../assets/SVG/arrow-bold-right.svg";
-import {
-  useGetProductByCategoryMutation,
-  useGetProductByNameMutation,
-} from "../../../redux/features/Products/productSlice";
+import Button from "../../../components/ui/Button";
 import Table from "../../../components/ui/Table";
-import { useNavigate } from "react-router-dom";
-import Spinner from "../../../utils/Spinner";
 import { useGetAllCategoriesQuery } from "../../../redux/features/Category/categorySlice";
+import {
+    useGetProductByCategoryMutation,
+    useGetProductByNameMutation
+} from "../../../redux/features/Products/productSlice";
+import Spinner from "../../../utils/Spinner";
+
 const SearchProduct = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const selectRef = useRef<HTMLSelectElement>(null);
+
   const [name, setName] = useState("");
   const [searchBy, setSearchBy] = useState(0);
+
   const [searchProductByName, { data, error, isSuccess, isLoading }] =
     useGetProductByNameMutation();
   const { data: categoriesData, isSuccess: categoriesLoaded } =
@@ -23,6 +26,7 @@ const SearchProduct = () => {
     searchProductByCategory,
     { data: productData, isSuccess: isByCategorySuccess },
   ] = useGetProductByCategoryMutation();
+
   const navigate = useNavigate();
 
   const takeParameter = 5;
@@ -32,7 +36,6 @@ const SearchProduct = () => {
     if (nameRef?.current) {
       await searchProductByName({
         page: e.target.id || 1,
-        // name: nameRef.current?.value,
         name,
       });
     }

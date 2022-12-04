@@ -1,7 +1,6 @@
-import React from "react";
-import "./index.scss";
 import { ReactComponent as Star } from "../../assets/SVG/star.svg";
 import Footer from "./Footer";
+import "./index.scss";
 import MainSection from "./MainSection";
 
 const Main = () => {

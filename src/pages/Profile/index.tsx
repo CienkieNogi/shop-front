@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
@@ -10,8 +9,10 @@ const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {username,role} = useAppSelector(selectLoggedCredentials);
-  const [logout,{isSuccess}]=useLogoutMutation()
+  const [logout]=useLogoutMutation()
+
   const isAdmin = localStorage.getItem('_role')?.replace(/"/g,'')
+
   const handleLogout = async() => {
     await logout()
     dispatch(logoutReducer());

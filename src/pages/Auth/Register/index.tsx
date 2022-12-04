@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../../components/ui/Button";
 import {
-    useGetAllUsersQuery,
-    useCreateUserMutation,
+    useCreateUserMutation, useGetAllUsersQuery
 } from "../../../redux/features/Auth/authApi";
 import { RegisterUserInput } from "../../../types";
 import Spinner from "../../../utils/Spinner";
@@ -19,6 +18,7 @@ const Register = () => {
         password: "",
         confirmPassword: "",
     });
+
     const [errorMsg, setErrorMsg] = useState("");
     const [passwordErr, setPasswordErr] = useState(false);
 

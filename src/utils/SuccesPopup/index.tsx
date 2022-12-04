@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/ui/Button";
 import "./index.scss";
 
 const SuccesPopup = React.forwardRef(
@@ -10,9 +9,11 @@ const SuccesPopup = React.forwardRef(
       console.log("HEL", setAddedToCart);
       setAddedToCart(false);
     };
+
     const handleRedirectToCart = () => {
       navigate("/cart");
     };
+
     return (
       <div className="succes-cont">
         <div ref={ref} className="success">

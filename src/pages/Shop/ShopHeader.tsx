@@ -2,17 +2,14 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/ui/Button";
 import useMediaQuery from "../../hooks/useMediaQuery";
-import { CategoryI } from "../../types";
+import { ShopHeaderT } from "../../types";
 import "./index.scss";
 
-type Props = {
-  count?: number;
-  categories?: CategoryI[];
-};
-const ShopHeader: React.FC<Props> = ({ count, categories }) => {
+const ShopHeader: React.FC<ShopHeaderT> = ({ count, categories }) => {
   const navigate = useNavigate();
   const selectRef = useRef<HTMLSelectElement>(null);
   const matches = useMediaQuery("(min-width:768px)");
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (selectRef.current?.value.length === 0) {
@@ -21,6 +18,7 @@ const ShopHeader: React.FC<Props> = ({ count, categories }) => {
       navigate(`/shop/search/${selectRef.current?.value}`);
     }
   };
+
   return (
     <div className="shop__header">
       <div className="shop__header--left">{`${count ?? 0} products`}</div>

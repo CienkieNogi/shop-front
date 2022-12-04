@@ -1,38 +1,39 @@
-import React, { LegacyRef, useRef, useState } from "react";
-import "./index.scss";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../redux/features/Products/productSlice";
-import Spinner from "../../utils/Spinner";
-import { UnitI } from "../../types";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { useAddToCartMutation } from "../../redux/features/Cart/cartSlice";
+import { useGetProductByIdQuery } from "../../redux/features/Products/productSlice";
+import { UnitI } from "../../types";
+import Spinner from "../../utils/Spinner";
+import SuccesPopup from "../../utils/SuccesPopup";
+import "./index.scss";
 import { AmountButton, Select } from "./QuantityButton";
 import SuggestedProduct from "./SuggestedProduct";
-import SuccesPopup from "../../utils/SuccesPopup";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const ProductPage = () => {
   const [addedToCart, setAddedToCart] = useState(false);
+  const [addToCart] = useAddToCartMutation();
   const { id } = useParams();
-  const { data, isLoading, isFetching } = useGetProductByIdQuery(id as string);
-  const [addToCart,{isLoading:addProductLoading}] = useAddToCartMutation();
-    const ref= React.createRef()
-useOnClickOutside(ref,()=>setAddedToCart(false))
+  const { data, isLoading } = useGetProductByIdQuery(id as string);
 
-  const pricePerUnit = data?.unit === "gram" ? "zł/kg" : "zł/szt.";
- const scrollToPoint=()=>{
-        window.scrollTo(0,0)
-    } 
+  const ref = React.createRef();
+  useOnClickOutside(ref, () => setAddedToCart(false));
+
+  const pricePerUnit = data?.unit === "gram" ? "$/kg" : "$/pcs";
+  const scrollToPoint = () => {
+    window.scrollTo(0, 0);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
   return (
-    <div   className="product-container product__anchor">
-                        {addedToCart && (
-                <div >
-
-                <SuccesPopup setAddedToCart={setAddedToCart} ref={ref}/>
-                </div>
-            )}
+    <div className="product-container product__anchor">
+      {addedToCart && (
+        <div>
+          <SuccesPopup setAddedToCart={setAddedToCart} ref={ref} />
+        </div>
+      )}
       <div className="product --padding-hor-4 ">
         <div className="product__img ">
           <img src={data?.photo} alt="steak" />
@@ -48,7 +49,6 @@ useOnClickOutside(ref,()=>setAddedToCart(false))
           <div className="product__attribute --margin-bottom-2 ">
             <p className="product__paragraph --margin-bottom-1">Quantity</p>
             {data?.unit === UnitI.gram ? (
-
               <Select
                 setAddedToCart={setAddedToCart}
                 addToCart={addToCart}

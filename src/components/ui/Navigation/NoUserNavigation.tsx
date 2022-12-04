@@ -1,10 +1,8 @@
-import React from 'react'
-import { ReactComponent as ClientIcon } from "../../../assets/SVG/user.svg";
-import { ReactComponent as SearchIcon } from "../../../assets/SVG/magnifying-glass.svg";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
-import "./index.scss";
+import { ReactComponent as ClientIcon } from "../../../assets/SVG/user.svg";
 import Cart from "./Cart";
+import "./index.scss";
 
 const NoUserNavigation = () => {
   enum LINKS {
@@ -16,14 +14,6 @@ const NoUserNavigation = () => {
     <>
       <div className="top">
         <div className="top__search-box">
-          {/* <input
-            type="text"
-            className="top__search-box--input"
-            placeholder="Search"
-          /> */}
-          {/* <div className="top__search-box--icon --center-flex">
-            <SearchIcon />
-          </div> */}
         </div>
         <Link to="/">
           <img src={logo} alt="" className="top__logo" />

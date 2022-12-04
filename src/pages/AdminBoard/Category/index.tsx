@@ -1,22 +1,22 @@
-import React, { useRef, useState } from "react";
-import Button from "../../../components/ui/Button";
+import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowDown } from "../../../assets/SVG/chevron-small-down.svg";
 import { ReactComponent as ArrowUp } from "../../../assets/SVG/chevron-small-up.svg";
 import { ReactComponent as EditIcon } from "../../../assets/SVG/edit.svg";
-import "../index.scss";
+import Button from "../../../components/ui/Button";
 import {
-  useCreateCategoryMutation,
-  useGetAllCategoriesQuery,
+    useCreateCategoryMutation,
+    useGetAllCategoriesQuery
 } from "../../../redux/features/Category/categorySlice";
-import { useNavigate } from "react-router-dom";
 import ErrorBox from "../ErrorBox";
+import "../index.scss";
 
 const Category = () => {
   const [expand, setExpand] = useState(false);
   const navigate= useNavigate()
   const inputRef = useRef<HTMLInputElement>(null);
-  const { data, error } = useGetAllCategoriesQuery();
-  const [createCategory, { isSuccess,error:createError, isError }] = useCreateCategoryMutation();
+  const { data } = useGetAllCategoriesQuery();
+  const [createCategory, { error:createError, isError }] = useCreateCategoryMutation();
 
   const changeExpand = () => {
     setExpand(!expand);

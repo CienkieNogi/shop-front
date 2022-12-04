@@ -1,4 +1,3 @@
-import React from 'react'
 import Navigation from '.';
 import { selectLoggedState } from '../../../pages/Auth/authSlice';
 import { useAppSelector } from '../../../redux/app/hooks';

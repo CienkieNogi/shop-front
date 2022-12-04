@@ -7,7 +7,6 @@ const CartItem: React.FC<{ singleOrder: Partial<SingleOrderI> }> = ({
   singleOrder,
 }) => {
   const [removeSingleOrder, { isSuccess }] = useRemoveSingleOrderMutation();
-
   const handleRemoveSingleOrder = async () => {
     if (!singleOrder.id || !singleOrder.cartId) {
       return;
@@ -18,6 +17,8 @@ const CartItem: React.FC<{ singleOrder: Partial<SingleOrderI> }> = ({
     });
   };
 
+  const unit = singleOrder.product?.unit;
+
   return (
     <div className="cart__item">
       <img
@@ -27,12 +28,14 @@ const CartItem: React.FC<{ singleOrder: Partial<SingleOrderI> }> = ({
       />
       <p className="cart__item--paragraph">{singleOrder.product?.name}</p>
       <p className="cart__item--paragraph">
-        {singleOrder.product?.price}{" "}
-        {singleOrder.product?.unit === UnitI.gram ? "zł/kg" : "szt."}
-      </p>
-      <p className="cart__item--paragraph">
         {singleOrder.amount}{" "}
         {singleOrder.product?.unit === UnitI.gram ? "gram" : "pcs"}
+      </p>
+      <p className="cart__item--paragraph">
+        {unit === "gram"
+          ? (singleOrder?.amount! * singleOrder.product?.price!) / 1000
+          : singleOrder?.amount! * singleOrder.product?.price!}
+        {" $"}
       </p>
       <div className="cart__item--icon" onClick={handleRemoveSingleOrder}>
         <TrashIcon />

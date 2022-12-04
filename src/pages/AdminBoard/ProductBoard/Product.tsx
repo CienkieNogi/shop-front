@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { ReactComponent as ArrowLeft } from "../../../assets/SVG/arrow-bold-left.svg";
 import Button from "../../../components/ui/Button";
 import {
-  useDeleteProductMutation,
-  useGetProductByIdQuery,
+    useDeleteProductMutation,
+    useGetProductByIdQuery
 } from "../../../redux/features/Products/productSlice";
-import { ReactComponent as ArrowLeft } from "../../../assets/SVG/arrow-bold-left.svg";
 import Spinner from "../../../utils/Spinner";
 import EditProduct from "./EditProduct";
 

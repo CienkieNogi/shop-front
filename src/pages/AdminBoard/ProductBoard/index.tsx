@@ -1,8 +1,8 @@
 /* eslint-disable react/style-prop-object */
-import React, { useRef, useState } from "react";
-import CreateProduct from "./CreateProduct";
+import React, { useState } from "react";
 import { ReactComponent as ArrowDown } from "../../../assets/SVG/chevron-small-down.svg";
 import { ReactComponent as ArrowUp } from "../../../assets/SVG/chevron-small-up.svg";
+import CreateProduct from "./CreateProduct";
 import SearchProduct from "./SearchProduct";
 
 const ProductBoard: React.FC = () => {

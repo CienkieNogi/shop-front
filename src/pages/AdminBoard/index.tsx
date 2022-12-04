@@ -3,7 +3,6 @@ import Category from "./Category";
 import "./index.scss";
 import ProductBoard from "./ProductBoard";
 
-const cosik = [];
 
 const AdminBoard = () => {
   const [open, setOpen] = useState({

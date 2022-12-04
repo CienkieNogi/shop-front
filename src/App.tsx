@@ -1,20 +1,14 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavPicker from "./components/ui/Navigation/NavWrapper";
 import ProtectedRoute from "./components/utilities/ProtectedRoute";
 import {
-  Login,
-  Main,
-  Product,
-  Profile,
-  Register,
-  AdminBoard,
-  EditCategory,
-  Shop,
-  Cart,
-  ProductPage,
-  AboutUs
+    AboutUs, AdminBoard, Cart, EditCategory, Login,
+    Main,
+    Product, ProductPage, Profile,
+    Register, Shop, SuccessPayment
 } from "./pages";
+import { RejectedPayment } from "./pages/AfterPayment";
 import { loginReducer } from "./pages/Auth/authSlice";
 import { useAppDispatch } from "./redux/app/hooks";
 
@@ -36,14 +30,13 @@ function App() {
   useEffect(() => {
     //If there is ttl item in storage, we verify if it is expired
     if (ttl) {
-      dispatch(loginReducer({role:role!,username:username!}));
+      dispatch(loginReducer({ role: role!, username: username! }));
       const tokenExpDate = JSON.parse(ttl);
       if (dateNow > tokenExpDate) {
         //token is expired
         localStorage.clear();
       }
     }
-    //TODO if localStorage is empty, check if backend response has valid token
   }, [ttl, dispatch]);
 
   return (
@@ -68,7 +61,30 @@ function App() {
                 <Profile />
               </ProtectedRoute>
             }
-          ></Route>
+          />
+          <Route
+            path="/success"
+            element={
+              <ProtectedRoute
+                redirectPath="/account/login"
+                isAllowed={isAllowed}
+              >
+                <SuccessPayment />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/reject"
+            element={
+              <ProtectedRoute
+                redirectPath="/account/login"
+                isAllowed={isAllowed}
+              >
+                <RejectedPayment />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/cart"
             element={
@@ -79,7 +95,7 @@ function App() {
                 <Cart />
               </ProtectedRoute>
             }
-          ></Route>
+          />
           <Route
             path="/account/adminboard"
             element={
@@ -90,7 +106,7 @@ function App() {
                 <AdminBoard />
               </ProtectedRoute>
             }
-          ></Route>
+          />
           <Route
             path="/account/adminboard/category/:categoryId"
             element={
@@ -101,7 +117,7 @@ function App() {
                 <EditCategory />
               </ProtectedRoute>
             }
-          ></Route>
+          />
           <Route
             path="/account/adminboard/product/:productId"
             element={
@@ -112,7 +128,7 @@ function App() {
                 <Product />
               </ProtectedRoute>
             }
-          ></Route>
+          />
         </Routes>
       </BrowserRouter>
     </div>

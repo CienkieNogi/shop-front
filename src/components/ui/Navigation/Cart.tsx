@@ -1,10 +1,8 @@
 import React from "react";
 import { ReactComponent as CartIcon } from "../../../assets/SVG/shopping-cart.svg";
+import {CartNav} from "../../../types";
 
-type Props = {
-  amountOfItems?: number;
-};
-const Cart: React.FC<Props> = ({ amountOfItems }) => {
+const Cart: React.FC<CartNav> = ({ amountOfItems }) => {
   return (
     <div className="top__user-box--profile --center-flex">
       <CartIcon className="top__user-box--icon" />

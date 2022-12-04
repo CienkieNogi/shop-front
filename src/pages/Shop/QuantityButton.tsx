@@ -1,15 +1,10 @@
 import React, { useRef } from "react";
 import Button from "../../components/ui/Button";
+import {QuantityButtonT} from "../../types";
 
-type Props = {
-  id: string;
-  addToCart?: any;
-  setAddedToCart?: any;
-    scrollTo:any;
-};
-
-export const AmountButton: React.FC<Props> = ({ addToCart, id ,setAddedToCart,scrollTo}) => {
+export const AmountButton: React.FC<QuantityButtonT> = ({ addToCart, id ,setAddedToCart,scrollTo}) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
   const add = async (e: any) => {
     e.preventDefault();
         try {
@@ -20,6 +15,7 @@ export const AmountButton: React.FC<Props> = ({ addToCart, id ,setAddedToCart,sc
         console.log(error)        
         }
   };
+
   return (
     <form className="quantity-button" onSubmit={add}>
       <div className="quantity-button-input --margin-bottom-2">
@@ -32,9 +28,10 @@ export const AmountButton: React.FC<Props> = ({ addToCart, id ,setAddedToCart,sc
   );
 };
 
-export const Select: React.FC<Props> = ({ addToCart, setAddedToCart, id ,scrollTo}) => {
+export const Select: React.FC<QuantityButtonT> = ({ addToCart, setAddedToCart, id ,scrollTo}) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
   const add = async (e: any) => {
     e.preventDefault();
     try {
@@ -49,6 +46,7 @@ export const Select: React.FC<Props> = ({ addToCart, setAddedToCart, id ,scrollT
             console.log(error)
         }
   };
+
   return (
     <form className="quantity-button" onSubmit={add}>
       <div className="quantity-button-input --margin-bottom-2">
@@ -60,7 +58,6 @@ export const Select: React.FC<Props> = ({ addToCart, setAddedToCart, id ,scrollT
         <input defaultValue={1} type="number" ref={inputRef} />
       </div>
       <div className="quantity-button-select">
-        {/* <button>add to cart</button> */}
         <Button title="Add to cart" />
       </div>
     </form>

@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import "./index.scss";
-import { useGetSuggestedProductsMutation } from "../../redux/features/Products/productSlice";
-import { ProductI, UnitI } from "../../types";
 import { useNavigate } from "react-router-dom";
+import { useGetSuggestedProductsMutation } from "../../redux/features/Products/productSlice";
+import { ProductI, SuggestedProductT, UnitI } from "../../types";
+import "./index.scss";
 
-type TProps = {
-  categoryId: string | undefined;
-  productId: string;
-};
-const SuggestedProduct: React.FC<TProps> = ({ categoryId, productId }) => {
+const SuggestedProduct: React.FC<SuggestedProductT> = ({
+  categoryId,
+  productId,
+}) => {
   const [getSuggestedProducts, { data }] = useGetSuggestedProductsMutation();
   const navigate = useNavigate();
+
   const [prodId, setProdId] = useState("");
   //array with diffrent products than main product
   let prodArray: ProductI[] = [];
   let finalArr: ProductI[] = [];
+
   data?.data.filter((el) => {
     if (el.id !== productId) {
       prodArray.push(el);
@@ -22,7 +23,7 @@ const SuggestedProduct: React.FC<TProps> = ({ categoryId, productId }) => {
     return prodArray;
   });
 
-    //We choose only 3 products for suggestions or less
+  //We choose only 3 products for suggestions or less
   if (prodArray.length >= 3) {
     for (let i = 0; i < 3; i++) {
       var random_int = Math.round(Math.random() * (prodArray.length - 1));
@@ -56,7 +57,7 @@ const SuggestedProduct: React.FC<TProps> = ({ categoryId, productId }) => {
             <div>
               <p>{el.name}</p>
               <p>
-                {el.price} {el.unit === UnitI.gram ? "zł/kg" : "zł/pcs"}{" "}
+                {el.price} {el.unit === UnitI.gram ? "$/kg" : "$/pcs"}{" "}
               </p>
             </div>
           </div>

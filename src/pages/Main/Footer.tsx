@@ -1,10 +1,10 @@
-import React from "react";
-import "./index.scss";
-import { ReactComponent as PhoneIcon } from "../../assets/SVG/phone.svg";
+import { Link } from "react-router-dom";
 import { ReactComponent as EmailIcon } from "../../assets/SVG/mail.svg";
+import { ReactComponent as PhoneIcon } from "../../assets/SVG/phone.svg";
 import { ReactComponent as ShopIcon } from "../../assets/SVG/shop.svg";
 import { ReactComponent as ProfileIcon } from "../../assets/SVG/user.svg";
-import { Link } from "react-router-dom";
+import "./index.scss";
+
 const Footer = () => {
   return (
     <footer className="footer">

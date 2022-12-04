@@ -1,14 +1,14 @@
-import React, { useRef } from "react";
-import "../index.scss";
+import { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../../components/ui/Button";
 import {
-  useDeleteCategoryMutation,
-  useEditCategoryMutation,
-  useGetCategoryByIdQuery,
+    useDeleteCategoryMutation,
+    useEditCategoryMutation,
+    useGetCategoryByIdQuery
 } from "../../../redux/features/Category/categorySlice";
-import ErrorBox from "../ErrorBox";
 import Spinner from "../../../utils/Spinner";
+import ErrorBox from "../ErrorBox";
+import "../index.scss";
 
 const EditCategory = () => {
   const { categoryId } = useParams();
