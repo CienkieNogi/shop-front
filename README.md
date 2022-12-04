@@ -17,6 +17,10 @@ https://user-images.githubusercontent.com/87211612/205518114-0cdc1c72-0608-4459-
 
 #### Instalation
 First, make sure to grab and install backend code :
+https://github.com/marcin-nedza/Shop
+
+For frontend you need to provide cloudinary url, and cloudinary preset as .env
+and url for your host and server.
 
 
 
